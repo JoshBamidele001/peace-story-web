@@ -10,7 +10,7 @@ export default function Navbar() {
     <>
 
        
-    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg'>
+    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg fixed bg-white'>
                 
        <ul className=' hidden md:flex lg:flex gap-12'>
             <Link to='/'>
@@ -36,7 +36,7 @@ export default function Navbar() {
         <Link to='/'>
         <div className='flex items-center gap-2'>
         <p className='text-xl'><FaSwatchbook /></p>
-        <p className='text-base md:text-2xl lg:text-3xl font-semibold'> phosINK</p>
+        <p className='text-base md:text-2xl lg:text-3xl font-semibold'> jayBeePENS</p>
         </div>
         </Link>
        

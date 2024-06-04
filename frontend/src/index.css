@@ -2,36 +2,7 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.container {
-  @apply h-screen max-w-7xl mx-auto flex justify-center items-center;
-  background: linear-gradient(to left, #0066ff, #ff0000); /* Blue to Red gradient */
-}
-
-.login-container {
-  @apply w-full max-w-md p-4 bg-white rounded-xl shadow-md;
-}
-
-.form-group {
-  @apply mb-4;
-}
-
-label {
-  @apply block text-gray-700;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  @apply border-2 rounded-xl block w-full p-2 pl-10 text-gray-700;
-}
-
-
-button {
-  @apply bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded;
-}
