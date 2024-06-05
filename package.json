@@ -1,0 +1,25 @@
+{
+  "name": "peaceful",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+   "dev": "nodemon backend/index.js",
+   "start": "node backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshBamidele001/peace-story-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshBamidele001/peace-story-web/issues"
+  },
+  "homepage": "https://github.com/JoshBamidele001/peace-story-web#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
