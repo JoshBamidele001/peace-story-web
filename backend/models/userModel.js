@@ -67,52 +67,52 @@ const userSchema =  new mongoose.Schema(
         },
 
         biblical_stories : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         science_fiction : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         mystery_thriller : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         historical_fiction : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         adventure : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         biography : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         children_stories : {
-            type : String,
+            type : Boolean,
             default: ""
         },
        literacy_fiction : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         humor : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         drama : {
-            type : String,
+            type : Boolean,
             default: ""
         },
         non_fiction : {
-            type : String,
+            type : Boolean,
             default: ""
         },
-        
+
         poetry : {
-            type : String,
+            type : Boolean,
             default: ""
         },
 
