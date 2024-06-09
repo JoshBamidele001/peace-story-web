@@ -13,7 +13,7 @@ export default function SignIn() {
 }
   
   return (
-    <section className='w-screen'>
+    <section className='w-screen relative'>
 
   <div class="h-screen  flex justify-center items-center" style={{ background: "linear-gradient(to left, #0066ff, #ff0000)"}}>
     <div class="w-full max-w-md p-4 bg-white rounded-xl shadow-md">

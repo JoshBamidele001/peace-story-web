@@ -10,7 +10,7 @@ export default function Navbar() {
     <>
 
        
-    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg fixed bg-white'>
+    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg fixed  bg-white'>
                 
        <ul className=' hidden md:flex lg:flex gap-12'>
             <Link to='/'>

@@ -85,7 +85,7 @@ const handleSubmit = async (e)=>{
 }
 
   return (
-    <section className='w-screen'>
+    <section className='w-screen relative  '>
 
   <div className="h-screen  flex justify-center items-center" style={{ background: "linear-gradient(to left, #0066ff, #ff0000)"}}>
     <div className="w-full max-w-md p-4 bg-white rounded-xl shadow-md">
