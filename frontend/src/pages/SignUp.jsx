@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { FaSwatchbook } from "react-icons/fa";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaRegEye } from "react-icons/fa";
 import { IoEyeOffOutline } from "react-icons/io5";
 
@@ -9,12 +9,21 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setloading] = useState('')
+  const [ErrorMessage, setErrorMessage] = useState(null)
+  const [formData, setformData] = useState({})
+  const navigate = useNavigate()
 
   const show =()=>{
     {showing? setshowing(false): setshowing(true)}
     // setshowing(!showing)
 }
 const handlePasswordChange = (e) => {
+  setformData({
+    ...formData,
+    [e.target.id] : e.target.value
+ 
+  })
   setPassword(e.target.value);
   validatePassword(e.target.value, confirmPassword);
 };
@@ -33,11 +42,53 @@ const validatePassword = (password, confirmPassword) => {
   }
 };
 
+const handleChange = (e) =>{
+  setformData({
+    ...formData,
+    [e.target.id] : e.target.value.trim()
+      
+  })
+}
+
+const handleSubmit = async (e)=>{
+  e.preventDefault()
+  if (!formData.name || !formData.email || !formData.password )
+      return setErrorMessage ('Please fill out all fields.')
+  try {
+    setloading(true);
+    const res = await fetch ('/api/auth/signup', {
+      method : 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body:JSON.stringify(formData),
+    });
+    const data = await res.json();
+    if (data.success === false){
+      setErrorMessage(data.message);
+      setloading(false);
+      return;
+     }
+    alert("Signup Successfully")
+    navigate('/sign-in')
+    setloading(false)
+    setErrorMessage(null)
+   
+
+  } catch (error) {
+    setloading(false)
+    setErrorMessage(false)
+    setErrorMessage(error.message)
+    
+  }
+
+}
+
   return (
     <section className='w-screen'>
 
-  <div class="h-screen  flex justify-center items-center" style={{ background: "linear-gradient(to left, #0066ff, #ff0000)"}}>
-    <div class="w-full max-w-md p-4 bg-white rounded-xl shadow-md">
+  <div className="h-screen  flex justify-center items-center" style={{ background: "linear-gradient(to left, #0066ff, #ff0000)"}}>
+    <div className="w-full max-w-md p-4 bg-white rounded-xl shadow-md">
 
         <Link to='/'>
               <div className='flex flex-col items-center justify-center gap-2 mt-10 mb-5 '>
@@ -50,25 +101,25 @@ const validatePassword = (password, confirmPassword) => {
         </Link>
         <hr />
 
-          <form>
+          <form onSubmit={handleSubmit}>
               <h2 className='text-2xl text-center font-semibold mt-5 '>Sign Up</h2>
-              <div class="mb-4">
+              <div className="mb-4">
                 <label className='block text-gray-700' for="name">Name</label>
                 <input
-                className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="text" id="name" />
+                className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="text" id="name" onChange={handleChange} />
               </div>
-              <div class="mb-4">
+              <div className="mb-4">
                   <label className='block text-gray-700' for="email">Email</label>
                   <input
-                  className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="email" id="email" />
+                  className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="email" id="email" onChange={handleChange} />
               </div>
-              <div class="mb-4 relative">
+              <div className="mb-4 relative">
                 <label className='block text-gray-700' for="password">Password</label>
                 <input 
                   value={password}
                   onChange={handlePasswordChange}
                   className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700'
-                  type={showing? "password" : "text"} id="password" />
+                  type={showing? "password" : "text"} id="password"  />
                   
                 <button type='button' onClick={show} className='absolute flex text-lg top-10 left-96'> {showing ? <IoEyeOffOutline /> : <FaRegEye />  }
                
@@ -76,7 +127,7 @@ const validatePassword = (password, confirmPassword) => {
 
               </div>
 
-              <div class="mb-4 relative">
+              <div className="mb-4 relative">
                 <label className='block text-gray-700' for="password"> Confirm Password</label>
                 <input 
                     value={confirmPassword}
@@ -89,9 +140,15 @@ const validatePassword = (password, confirmPassword) => {
                
                 </button>
               </div>
+
+              {
+                ErrorMessage && (
+                  <p className="text-red-500 text-xs italic my-2">{ErrorMessage}</p>
+                )
+              }
               
               <button
-              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} >Sign Up</button>
+              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} disabled={loading} >Sign Up</button>
           </form>
 
           <p className='text-sm my-5'>Already have an account, <Link to='/sign-in'><span className='text-green-800 font-semibold'>Log in</span></Link></p>
