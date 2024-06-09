@@ -103,6 +103,12 @@ const handleSubmit = async (e)=>{
 
           <form onSubmit={handleSubmit}>
               <h2 className='text-2xl text-center font-semibold mt-5 '>Sign Up</h2>
+
+              {
+                ErrorMessage && (
+                  <p className="text-red-500 text-xs italic my-2">{ErrorMessage}</p>
+                )
+              }
               <div className="mb-4">
                 <label className='block text-gray-700' for="name">Name</label>
                 <input
@@ -121,7 +127,7 @@ const handleSubmit = async (e)=>{
                   className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700'
                   type={showing? "password" : "text"} id="password"  />
                   
-                <button type='button' onClick={show} className='absolute flex text-lg top-10 left-96'> {showing ? <IoEyeOffOutline /> : <FaRegEye />  }
+                <button type='button' onClick={show} className='absolute flex text-lg top-10 left-60 md:top-10 md:left-96'> {showing ? <IoEyeOffOutline /> : <FaRegEye />  }
                
                 </button>
 
@@ -136,16 +142,12 @@ const handleSubmit = async (e)=>{
                     type={showing? "password" : "text"} id="password" />
                     {error && <p className="text-red-500 text-xs italic">{error}</p>}
                 
-                <button type='button' onClick={show} className='absolute flex text-lg top-10 left-96'> {showing ?  <IoEyeOffOutline /> : <FaRegEye />  }
+                <button type='button' onClick={show} className='absolute flex text-lg  top-10 left-60 md:top-10 md:left-96 '> {showing ?  <IoEyeOffOutline /> : <FaRegEye />  }
                
                 </button>
               </div>
 
-              {
-                ErrorMessage && (
-                  <p className="text-red-500 text-xs italic my-2">{ErrorMessage}</p>
-                )
-              }
+              
               
               <button
               className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} disabled={loading} >Sign Up</button>
