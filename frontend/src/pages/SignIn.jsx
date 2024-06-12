@@ -3,12 +3,14 @@ import { FaSwatchbook } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'
 import { FaRegEye } from "react-icons/fa";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart, signInSuccess, signInFailure} from '../redux/user/userSlice'
 
 export default function SignIp() {
   const [showing, setshowing] = useState(false)
   const [password, setPassword] = useState('');
-  const [loading, setloading] = useState('')
-  const [ErrorMessage, setErrorMessage] = useState(null)
+  const {loading, error: ErrorMessage } = useSelector(state => state.user)
+  const dispatch = useDispatch();
   const [formData, setformData] = useState({})
   const navigate = useNavigate()
 
@@ -29,10 +31,11 @@ const handleChange = (e) =>{
 
 const handleSubmit = async (e)=>{
   e.preventDefault()
-  if ( !formData.email || !formData.password )
-      return setErrorMessage ('Please fill out all fields.')
+  if ( !formData.email || !formData.password ){
+      return dispatch (signInFailure ('Please fill out all fields.'))
+}
   try {
-    setloading(true);
+    dispatch(signInStart())
     const res = await fetch ('/api/auth/signin', {
       method : 'POST',
       headers: {
@@ -42,20 +45,20 @@ const handleSubmit = async (e)=>{
     });
     const data = await res.json();
     if (data.success === false){
-      setErrorMessage(data.message);
-      setloading(false);
-      return;
+      dispatch(signInFailure(data.message))
      }
-    alert("Signin Successfully")
-    navigate('/')
-    setloading(false)
-    setErrorMessage(null)
+    
+    if (res.ok) {
+      dispatch(signInSuccess(data))
+      alert("Signin Successfully")
+      navigate('/')
+     
+      
+    }
    
 
   } catch (error) {
-    setloading(false)
-    setErrorMessage(false)
-    setErrorMessage(error.message)
+   dispatch(signInFailure(error.message))
     
   }
 
@@ -71,7 +74,7 @@ const handleSubmit = async (e)=>{
               <div className='flex flex-col items-center justify-center gap-2 mt-10 mb-5 '>
               <div className='flex items-center justify-center gap-2'>
               <p className='text-xl'><FaSwatchbook /></p>
-              <p className='text-base md:text-2xl lg:text-3xl font-semibold'> jayBeePENS</p>
+              <p className='text-base md:text-2xl lg:text-3xl font-semibold'> dphosPENS</p>
               </div>
               <small>...lets help you bring out your story</small>
               </div>

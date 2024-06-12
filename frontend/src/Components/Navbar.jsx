@@ -36,7 +36,7 @@ export default function Navbar() {
         <Link to='/'>
         <div className='flex items-center gap-2'>
         <p className='text-xl'><FaSwatchbook /></p>
-        <p className='text-base md:text-2xl lg:text-3xl font-semibold'> jayBeePENS</p>
+        <p className='text-base md:text-2xl lg:text-3xl font-semibold'> dphosPENS</p>
         </div>
         </Link>
        

@@ -94,7 +94,7 @@ const handleSubmit = async (e)=>{
               <div className='flex flex-col items-center justify-center gap-2 mt-10 mb-5 '>
               <div className='flex items-center justify-center gap-2'>
               <p className='text-xl'><FaSwatchbook /></p>
-              <p className='text-base md:text-2xl lg:text-3xl font-semibold'> jayBeePENS</p>
+              <p className='text-base md:text-2xl lg:text-3xl font-semibold'> dphosPENS</p>
               </div>
               <small>...lets help you bring out your story</small>
               </div>
