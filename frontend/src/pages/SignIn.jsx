@@ -5,6 +5,7 @@ import { FaRegEye } from "react-icons/fa";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure} from '../redux/user/userSlice'
+import OAuth from '../Components/OAuth';
 
 export default function SignIp() {
   const [showing, setshowing] = useState(false)
@@ -114,7 +115,11 @@ const handleSubmit = async (e)=>{
               
               
               <button
-              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} disabled={loading} >Sign Up</button>
+              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} disabled={loading} >Sign In </button>
+
+              <OAuth/>
+          
+          
           </form>
 
           <p className='text-sm my-5'>Dont have an account, <Link to='/sign-up'><span className='text-green-800 font-semibold'>Sign up</span></Link></p>
