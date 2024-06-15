@@ -56,13 +56,13 @@ export const signin = async (req, res, next) => {
         if (!email || !password || email === '' || password === ''){
                 next(errorHandler(400, 'All fields are required'))
         }
-
         try {
                 const validUser = await User.findOne({email })
                 if(!validUser){
                         next(errorHandler(404, 'User not form'));
                 }
-        const validPassword = bcryptjs.compareSync(password, validUser.password);
+         
+                const validPassword = bcryptjs.compareSync(password, validUser.password);
                 if (!validPassword){
                         return   next(errorHandler(400, 'Wrong credentials'))
                 }
@@ -123,7 +123,7 @@ export const google = async (req, res, next) => {
                         });
 
                                 await newUser.save();
-                                const token = jwt.sign({ id:newUser._id}, process.env.JWT_SECRET);
+                                const token = jwt.sign({ id: newUser._id}, process.env.JWT_SECRET);
                                 const { password, ...rest } = newUser._doc;
 
                                 res.status(200).cookie('access_token', token, {
