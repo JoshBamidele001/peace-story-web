@@ -1,20 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
-import { MdDarkMode } from "react-icons/md";
-import { FaSwatchbook } from "react-icons/fa";
+import { FaSwatchbook, FaSun, FaMoon } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
-import { RiLoginBoxFill } from "react-icons/ri";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {toggleTheme} from '../redux/theme/themeSlice'
+
 
 export default function Navbar() {
 
   const {currentUser} = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const {theme} = useSelector((state)=> state.theme)
+
   return (
     <>
 
        
-    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg   bg-white'>
+    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg   '>
                 
        <ul className=' hidden md:flex lg:flex gap-12'>
             <Link to='/'>
@@ -32,9 +35,7 @@ export default function Navbar() {
             <Link to='about_us'>
             <li>About us</li>
             </Link>
-            <Link to='/pricing'>
-            <li>Pricing</li>
-            </Link>
+           
        </ul>
         
         <Link to='/'>
@@ -48,29 +49,42 @@ export default function Navbar() {
         {currentUser ? (
                             <Link to={'/dashboard'}>
                             <div className='md:flex items-center gap-2 hidden '>
-                                <RiLoginBoxFill/><span className='text-lg'> Dashboard</span>
+                              <div><img src={currentUser.avatar}alt="Profile picture" className='w-12 rounded-full' /></div>
+                               <div className='flex flex-col'>
+                               <span className='text-sm'>Hi, {currentUser.name} </span>
+                               <span className='text-lg'> Dashboard</span>
+                               </div>
                             </div>
                             </Link>
                         ) : (
                        
                 <Link to='/sign-up'>
                 <div>
-                      <p className='text-base hidden md:inline-block lg:inline-block btn bg-transparent md:py-2 md:px-3 border-2 border-black rounded-xl '>Singup/Signin</p>
+                      <p className='text-base hidden md:inline-block lg:inline-block btn bg-transparent 
+                      md:py-2 md:px-3 border-2 border-black rounded-xl '>Signup/Signin</p>
                 </div>
                 </Link>
                         ) }
 
 
 
-       <div className='flex gap-5 md:hidden text-3xl '>
+       <div className='flex gap-5 text-3xl '>
 
+       <div className='md:hidden'>
        <IoMdMenu />
+       </div>
 
-       <MdDarkMode />
+       <button onClick={() => dispatch (toggleTheme())}>
+          {
+            theme === 'light' ? <FaMoon /> : <FaSun />
+          } 
+       </button>
 
+       <div className='md:hidden'>
        <Link to='/sign-up'>
           <IoIosLogIn />
        </Link>
+       </div>
        </div>
 
 
