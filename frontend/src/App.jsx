@@ -10,6 +10,11 @@ import SignIn from './pages/SignIn';
 import Publish from './pages/Publish';
 import Pricing from './pages/Pricing';
 import WriteForYou from './pages/WriteForYou';
+import Dashboard from './pages/Dashboard';
+import AllProfile from './DashboardOutlet/AllProfile';
+import Privateroutes from './pages/PrivateRoutes';
+
+
 
 export default function App() {
   return (
@@ -24,6 +29,16 @@ export default function App() {
         <Route path='/publish' element= {<Publish/>} />
         <Route path='/pricing' element= {<Pricing/>} />
         <Route path='/lets-write-for-you' element= {<WriteForYou/>} />
+
+
+        <Route element={<Privateroutes/>}>
+              <Route path='/dashboard' element={<Dashboard/>}> 
+                  <Route path='/dashboard' element={<AllProfile/>} />
+
+              
+
+              </Route>
+          </Route>
 
         
       </Routes>
