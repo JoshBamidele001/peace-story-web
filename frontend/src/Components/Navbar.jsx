@@ -9,8 +9,8 @@ import {toggleTheme} from '../redux/theme/themeSlice'
 
 export default function Navbar() {
 
-  const {currentUser} = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const {currentUser} = useSelector(state => state.user)
   const {theme} = useSelector((state)=> state.theme)
 
   return (
@@ -74,7 +74,7 @@ export default function Navbar() {
        <IoMdMenu />
        </div>
 
-       <button onClick={() => dispatch (toggleTheme())}>
+       <button type='button' onClick={() => dispatch(toggleTheme())}>
           {
             theme === 'light' ? <FaMoon /> : <FaSun />
           } 
