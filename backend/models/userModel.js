@@ -21,7 +21,7 @@ const userSchema =  new mongoose.Schema(
 
         avatar: {
             type : String,
-            default: "https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_640.png"
+            default: "https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/dphospen%2Fprofile%20picture.jpg?alt=media&token=fa246428-c7fe-4f44-993d-ae55a05d9159"
             
         },
 
