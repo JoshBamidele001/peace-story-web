@@ -33,6 +33,7 @@ export default function App() {
 
         <Route element={<PrivateRoutes/>}>
               <Route path='/dashboard' element={<Dashboard/>}> 
+                  
                   <Route path='/dashboard' element={<AllProfile/>} />
                   <Route path='/dashboard/edit_profile' element={<EditProfile/>} />
                   <Route path='/dashboard/my_library' element={<MyLibrary/>} />

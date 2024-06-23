@@ -1,12 +1,38 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSwatchbook, FaEdit, FaAddressBook, FaSave  } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { IoLibrary, IoLogOut  } from "react-icons/io5";
+import { logoutUserFailure, logoutUserStart, logoutUserSuccess } from '../redux/user/userSlice';
+
 
 export default function DashboardSidebar() {
   const { currentUser } = useSelector(state => state.user);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handlelogout = async () => {
+    try {
+      dispatch(logoutUserStart())
+      const res = await fetch('/api/auth/logout');
+      const data = await res.json();
+      if (data.success === false){
+        dispatch(logoutUserFailure(data.message))
+        return
+      }
+      //not solved totally
+      dispatch(logoutUserSuccess(data))
+      alert("logout successfull")
+      navigate('/sign-in') 
+
+
+    } catch (error) {
+      dispatch(logoutUserFailure(data.message))
+      
+    }
+}
+
   return (
     <div className='bg-[rgb(16,23,42)] h-screen text-gray-200'>
 
@@ -44,7 +70,7 @@ export default function DashboardSidebar() {
             <Link to='/dashboard/add_book_listing'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Add book listing</li>
             </Link>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
+            <li onClick={handlelogout} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
         </ul>
     </div>
   )

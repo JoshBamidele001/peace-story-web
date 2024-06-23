@@ -58,7 +58,7 @@ export const signin = async (req, res, next) => {
         }
         try {
                 const validUser = await User.findOne({email })
-                if(!validUser){
+                if(!validUser)  {
                         next(errorHandler(404, 'User not form'));
                 }
          
@@ -72,9 +72,11 @@ export const signin = async (req, res, next) => {
                         process.env.JWT_SECRET);
                         const { password: pass, ...rest } = validUser._doc
                         // {expiresIn:'1h'}  for the expiration of the token
-                        res.status(200).cookie('access_token', token, {
-                                httpOnly:true
-                        }).json (rest)
+                        res
+                                .cookie('access_token', token, {
+                                httpOnly:true})
+                                .status(200)
+                                .json (rest)
                 
         } catch (error) {
                 next(error);
@@ -136,3 +138,12 @@ export const google = async (req, res, next) => {
                 
         }
 }
+
+export const logout = ( req, res , next) =>{
+        try {
+            res.clearCookie('access_token');
+            res.status(200).json('User has been logged out!')
+        } catch (error) {
+            next(error)
+        }
+    }
