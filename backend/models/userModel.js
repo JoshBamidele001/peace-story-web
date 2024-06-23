@@ -68,15 +68,15 @@ const userSchema =  new mongoose.Schema(
 
         biblical_stories : {
             type : Boolean,
-            default: ""
+            default: "true"
         },
         science_fiction : {
             type : Boolean,
-            default: ""
+            default: "false"
         },
         mystery_thriller : {
             type : Boolean,
-            default: ""
+            default: "false"
         },
         historical_fiction : {
             type : Boolean,

@@ -13,7 +13,7 @@ import AllProfile from './DashboardOutlet/AllProfile';
 import EditProfile from './DashboardOutlet/EditProfile';
 import MyLibrary from './DashboardOutlet/MyLibrary';
 import AddBookListing from './DashboardOutlet/AddBookListing';
-import Privateroutes from './pages/PrivateRoutes';
+import PrivateRoutes from './pages/PrivateRoutes';
 import SavedBooks from './DashboardOutlet/SavedBooks';
 
 
@@ -31,15 +31,13 @@ export default function App() {
         <Route path='/publish' element= {<Publish/>} />
         <Route path='/lets-write-for-you' element= {<WriteForYou/>} />
 
-        <Route element={<Privateroutes/>}>
+        <Route element={<PrivateRoutes/>}>
               <Route path='/dashboard' element={<Dashboard/>}> 
                   <Route path='/dashboard' element={<AllProfile/>} />
                   <Route path='/dashboard/edit_profile' element={<EditProfile/>} />
                   <Route path='/dashboard/my_library' element={<MyLibrary/>} />
                   <Route path='/dashboard/add_book_listing' element={<AddBookListing/>} />
-                  <Route path='/dashboard/saved_books' element={<SavedBooks/>} />
-
-              
+                  <Route path='/dashboard/saved_books' element={<SavedBooks/>} />        
 
               </Route>
           </Route>

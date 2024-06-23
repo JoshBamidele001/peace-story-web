@@ -10,6 +10,11 @@ export default function EditProfile() {
     <section>
 
       <p className='text-center lg:text-4xl font-semibold my-3'>EDIT PROFILE</p>
+
+      <hr /> 
+
+      <p className='text-center lg:text-2xl font-semibold my-8'>SECTION A: BIODATA</p>
+
             <form  className='font-semibold'>
 
             <div className='grid grid-col grid-cols-1 sm:grid-cols-1 gap-2 md:grid-cols-2'>
@@ -20,7 +25,7 @@ export default function EditProfile() {
                         type="text"
                         name=""
                         id="name"
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         defaultValue={currentUser.name}
                         placeholder=""
                         aria-describedby="helpId"
@@ -36,7 +41,7 @@ export default function EditProfile() {
                         name=""
                         id="email"
                         defaultValue={currentUser.email}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -51,7 +56,7 @@ export default function EditProfile() {
                         name=""
                         id="phone"
                         defaultValue={currentUser.phone}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -66,7 +71,7 @@ export default function EditProfile() {
                         name=""
                         id="country"
                         defaultValue={currentUser.country}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -81,7 +86,7 @@ export default function EditProfile() {
                         name=""
                         id="address"
                         defaultValue={currentUser.address}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -96,7 +101,7 @@ export default function EditProfile() {
                         name=""
                         id="state"
                         defaultValue={currentUser.state}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -111,7 +116,7 @@ export default function EditProfile() {
                         name=""
                         id="city"
                         defaultValue={currentUser.city}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -126,7 +131,7 @@ export default function EditProfile() {
                         name=""
                         id="zip"
                         defaultValue={currentUser.zip}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -141,7 +146,7 @@ export default function EditProfile() {
                         name=""
                         id="website"
                         defaultValue={currentUser.website}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -156,7 +161,7 @@ export default function EditProfile() {
                         name=""
                         id="facebook"
                         defaultValue={currentUser.facebook}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -171,7 +176,7 @@ export default function EditProfile() {
                         name=""
                         id="twitter"
                         defaultValue={currentUser.twitter}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -186,7 +191,7 @@ export default function EditProfile() {
                         name=""
                         id="linkedin"
                         defaultValue={currentUser.linkedin}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -201,7 +206,7 @@ export default function EditProfile() {
                         name=""
                         id="instagram"
                         defaultValue={currentUser.instagram}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -216,7 +221,7 @@ export default function EditProfile() {
                         name=""
                         id="pinterest"
                         defaultValue={currentUser.pinterest}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -231,7 +236,7 @@ export default function EditProfile() {
                         name=""
                         id="youtube"
                         defaultValue={currentUser.youtube}
-                        className="form-control py-2 rounded-lg border"
+                        className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
                         // onChange={handleChange}
@@ -243,6 +248,8 @@ export default function EditProfile() {
 
 
             </div>
+
+            <p className='text-center lg:text-2xl font-semibold my-8'>SECTION B: TECHNICAL INFO</p>
 
             <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-3 rounded-lg'>Update</button>
 
