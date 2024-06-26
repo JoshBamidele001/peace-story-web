@@ -17,7 +17,7 @@ export default function EditProfile() {
 
             <form  className='font-semibold'>
 
-            <div className='grid grid-col grid-cols-1 sm:grid-cols-1 gap-2 md:grid-cols-2'>
+            <div className='grid grid-col grid-cols-1 sm:grid-cols-1 gap-2 md:grid-cols-2 '>
                
                 <div className="mb-3 flex flex-col">
                     <label htmlFor="" className="form-label">Name</label>
@@ -249,9 +249,37 @@ export default function EditProfile() {
 
             </div>
 
-            <p className='text-center lg:text-2xl font-semibold my-8'>SECTION B: TECHNICAL INFO</p>
+            <p className='text-center lg:text-2xl font-semibold my-8'>SECTION B: GENRE and CATEGORIES</p>
 
-            <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-3 rounded-lg'>Update</button>
+            <div className='grid grid-cols-1 md:grid-cols-2 mb-10'>
+
+            <div class="w-96 flex items-center justify-center gap-5">
+                <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
+                <select id="genre" name="genre" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="drama">Drama</option>
+                    <option value="pose">Prose</option>
+                    <option value="poetry">Poetry</option>
+                </select>
+            </div>
+
+            <div class="w-full flex items-center justify-center gap-10">
+                <label for="categories" class="block text-sm font-medium text-gray-700">CATEGORIES</label>
+                <select id="categories" name="categories" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="biblical_stories">Biblical Stories</option>
+                    <option value="science_fiction">Science Fiction</option>
+                    <option value="mystery_thriller">Mystery Thriller</option>
+                    <option value="historical_fiction">Historical Fiction</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="biography">Biography</option>
+                    <option value="children_stories">Children Stories</option>
+                    <option value="literacy_fiction">Literary Fiction</option>
+                    <option value="humor">Humor</option>
+                    <option value="non_fiction">Non-fiction</option>
+                </select>
+            </div>
+            </div>
+
+            <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-10 text-center w-full rounded-lg'>Update</button>
 
             </form>
 
