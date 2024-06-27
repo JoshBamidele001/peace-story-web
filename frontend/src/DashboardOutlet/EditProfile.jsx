@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export default function EditProfile() {
   const {currentUser} = useSelector(state => state.user)
+  const [imagefile, setimagefile] = useState(null)
+  const filePickerRef = useRef()
+  const handleImageChange = (e) =>{
+    setimagefile(e.target.files[0]); 
+  }
+  console.log(imagefile );
 
   return (
     <>
@@ -12,6 +18,12 @@ export default function EditProfile() {
       <p className='text-center lg:text-4xl font-semibold my-3'>EDIT PROFILE</p>
 
       <hr /> 
+      <input type="file" accept='image/*'  onChange={handleImageChange} ref={filePickerRef} hidden/>
+        <div className='flex flex-col justify-center items-center ' onClick={()=>filePickerRef.current.click()}>
+               <img src={currentUser.avatar}
+                className='w-40 h-40 border-8 rounded-full' alt="" />
+        <small className='italic text-red-500 text-center '>You can your change profile picture by clicking on the photo</small>
+        </div>
 
       <p className='text-center lg:text-2xl font-semibold my-8'>SECTION A: BIODATA</p>
 
@@ -249,37 +261,109 @@ export default function EditProfile() {
 
             </div>
 
-            <p className='text-center lg:text-2xl font-semibold my-8'>SECTION B: GENRE and CATEGORIES</p>
+            <p className='text-center lg:text-2xl font-semibold mt-8'>SECTION B: GENRE and CATEGORIES</p>
+            <small className='text-center text-red-500 italic flex items-center justify-center mb-10'>kindly select two or more from the genre and the categories</small>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 mb-10'>
+            <div className='grid grid-cols-2'>
 
-            <div class="w-96 flex items-center justify-center gap-5">
-                <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
-                <select id="genre" name="genre" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="drama">Drama</option>
-                    <option value="pose">Prose</option>
-                    <option value="poetry">Poetry</option>
-                </select>
+            <div class="w-96 ">
+                
+                <label class="block text-sm font-medium text-gray-700">GENRE</label>
+                <div class="mt-2 space-y-2">
+                    <div class="flex items-center">
+                        <input id="drama" name="genre" type="checkbox" value="drama" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                       checked={currentUser.drama === 'true'}
+                        />
+                        <label for="drama" class="ml-3 block text-sm font-medium text-gray-700">
+                            Drama
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="pose" name="genre" type="checkbox" value="pose" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded "/>
+                        <label for="pose" class="ml-3 block text-sm font-medium text-gray-700">
+                            Pose
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="poetry" name="genre" type="checkbox" value="poetry" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" checked={currentUser.poetry === 'true'}/>
+                        <label for="poetry" class="ml-3 block text-sm font-medium text-gray-700">
+                            Poetry
+                        </label>
+                    </div>
+                </div>
+
+            </div>             
+
+        
+            <div className=''>
+            <label for="categories" class="block text-sm font-medium text-gray-700">CATEGORIES</label>
+                <div class="mt-2 space-y-2">
+                    <div class="flex items-center">
+                        <input id="biblical_stories" name="categories" type="checkbox" value="biblical_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="biblical_stories" class="ml-3 block text-sm font-medium text-gray-700">
+                            Biblical Stories
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="science_fiction" name="categories" type="checkbox" value="science_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="science_fiction" class="ml-3 block text-sm font-medium text-gray-700">
+                            Science Fiction
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="mystery_thriller" name="categories" type="checkbox" value="mystery_thriller" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="mystery_thriller" class="ml-3 block text-sm font-medium text-gray-700">
+                            Mystery Thriller
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="historical_fiction" name="categories" type="checkbox" value="historical_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="historical_fiction" class="ml-3 block text-sm font-medium text-gray-700">
+                            Historical Fiction
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Adventure
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="biography" name="categories" type="checkbox" value="biography" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="biography" class="ml-3 block text-sm font-medium text-gray-700">
+                            Biography
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="children_stories" name="categories" type="checkbox" value="children_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="children_stories" class="ml-3 block text-sm font-medium text-gray-700">
+                            Children Stories
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="literacy_fiction" name="categories" type="checkbox" value="literacy_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="literacy_fiction" class="ml-3 block text-sm font-medium text-gray-700">
+                            Literary Fiction
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="humor" name="categories" type="checkbox" value="humor" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="humor" class="ml-3 block text-sm font-medium text-gray-700">
+                            Humor
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="non_fiction" name="categories" type="checkbox" value="non_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <label for="non_fiction" class="ml-3 block text-sm font-medium text-gray-700">
+                            Non-fiction
+                        </label>
+                    </div>
+                </div>
             </div>
-
-            <div class="w-full flex items-center justify-center gap-10">
-                <label for="categories" class="block text-sm font-medium text-gray-700">CATEGORIES</label>
-                <select id="categories" name="categories" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="biblical_stories">Biblical Stories</option>
-                    <option value="science_fiction">Science Fiction</option>
-                    <option value="mystery_thriller">Mystery Thriller</option>
-                    <option value="historical_fiction">Historical Fiction</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="biography">Biography</option>
-                    <option value="children_stories">Children Stories</option>
-                    <option value="literacy_fiction">Literary Fiction</option>
-                    <option value="humor">Humor</option>
-                    <option value="non_fiction">Non-fiction</option>
-                </select>
             </div>
-            </div>
+            
 
-            <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-10 text-center w-full rounded-lg'>Update</button>
+            <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-5 text-center w-full rounded-lg'>Update</button>
 
             </form>
 
