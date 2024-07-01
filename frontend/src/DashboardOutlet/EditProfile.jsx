@@ -1,15 +1,64 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import {app} from '../firebase'
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export default function EditProfile() {
   const {currentUser} = useSelector(state => state.user)
   const [imagefile, setimagefile] = useState(null)
-  const filePickerRef = useRef()
+  const [filePerc, setfilePerc] = useState(0)
+  const [imagefileUrl, setimagefileUrl] = useState()
+  const [fileUploadError, setfileUploadError] = useState(false)
+  const filePickerRef = useRef(null)
   const handleImageChange = (e) =>{
     setimagefile(e.target.files[0]); 
   }
-  console.log(imagefile );
+  console.log(imagefile, filePerc );
+     useEffect(()=>{
+        if (imagefile){
+            uploadImage()
+        }
+     }, [imagefile])
 
+     const uploadImage = async ()=>{
+        // service firebase.storage {
+        //     match /b/{bucket}/o {
+        //       match /{allPaths=**} {
+        //         allow read;
+        //         allow write: if 
+        //         request.resource.size < 2 * 1024 * 1024 &&
+        //               request.resource.contentType.matches('image/.*')
+        //       }
+        //     }
+        //   }
+        setfileUploadError(null)
+        const storage = getStorage(app)
+        const fileName = new Date().getTime() + imagefile.name;
+        const storageRef = ref(storage, fileName);
+        const uploadTask = uploadBytesResumable(storageRef, imagefile);
+
+        uploadTask.on ('state_changed', (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setfilePerc(Math.round(progress))
+        },
+        (error) => {
+            setfileUploadError(true);
+            setfilePerc(null)
+            setimagefile(null)
+            setimagefileUrl(null)
+        },
+
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref).then 
+            ((downloadURL)=>
+                setimagefileUrl(downloadURL)
+            // setformData({...formData, avatar: downloadURL})
+          );
+        },
+      );
+     }
   return (
     <>
 
@@ -19,10 +68,34 @@ export default function EditProfile() {
 
       <hr /> 
       <input type="file" accept='image/*'  onChange={handleImageChange} ref={filePickerRef} hidden/>
-        <div className='flex flex-col justify-center items-center ' onClick={()=>filePickerRef.current.click()}>
-               <img src={currentUser.avatar}
-                className='w-40 h-40 border-8 rounded-full' alt="" />
-        <small className='italic text-red-500 text-center '>You can your change profile picture by clicking on the photo</small>
+        <div className='relative  flex flex-col justify-center items-center ' onClick={()=>filePickerRef.current.click()}>
+                {filePerc && (
+                    <CircularProgressbar value={filePerc || 0} text={`${filePerc}%`}
+                    strokeWidth={5}
+                    styles={{
+                        root: {
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                        },
+                        path: {
+                            stroke: `rgba(62, 152, 199, ${
+                                filePerc /  100 
+                            })`
+                        }
+                    }}
+                    />
+                )} 
+               <img src={imagefileUrl || currentUser.avatar}
+                className={`w-40 h-40 border-8 rounded-full ${filePerc && filePerc< 100 && 'opacity-60 '}`}
+                 />
+                 {fileUploadError &&
+                 (
+
+        <small className='italic text-red-500 text-center '>{fileUploadError}</small>
+                 )}
         </div>
 
       <p className='text-center lg:text-2xl font-semibold my-8'>SECTION A: BIODATA</p>
@@ -264,12 +337,12 @@ export default function EditProfile() {
             <p className='text-center lg:text-2xl font-semibold mt-8'>SECTION B: GENRE and CATEGORIES</p>
             <small className='text-center text-red-500 italic flex items-center justify-center mb-10'>kindly select two or more from the genre and the categories</small>
 
-            <div className='grid grid-cols-2'>
+            <div className=''>
 
-            <div class="w-96 ">
+            <div class="w-96 my-6 ">
                 
-                <label class="block text-sm font-medium text-gray-700">GENRE</label>
-                <div class="mt-2 space-y-2">
+                <label class="block text-sm font-medium text-gray-700 lg:text-xl">GENRE: </label>
+                <div class="mt-2 space-y-2 grid grid-cols-3">
                     <div class="flex items-center">
                         <input id="drama" name="genre" type="checkbox" value="drama" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                        checked={currentUser.drama === 'true'}
@@ -285,7 +358,8 @@ export default function EditProfile() {
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="poetry" name="genre" type="checkbox" value="poetry" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" checked={currentUser.poetry === 'true'}/>
+                        <input id="poetry" name="genre" type="checkbox" value="poetry" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" 
+                        checked={currentUser.poetry === 'true'}/>
                         <label for="poetry" class="ml-3 block text-sm font-medium text-gray-700">
                             Poetry
                         </label>
@@ -296,8 +370,8 @@ export default function EditProfile() {
 
         
             <div className=''>
-            <label for="categories" class="block text-sm font-medium text-gray-700">CATEGORIES</label>
-                <div class="mt-2 space-y-2">
+            <label for="categories" class="block text-sm font-medium text-gray-700 lg:text-xl">CATEGORIES:</label>
+                <div class="mt-2 space-y-2 w-full grid grid-cols-3">
                     <div class="flex items-center">
                         <input id="biblical_stories" name="categories" type="checkbox" value="biblical_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
                         <label for="biblical_stories" class="ml-3 block text-sm font-medium text-gray-700">
