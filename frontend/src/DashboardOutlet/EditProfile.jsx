@@ -44,7 +44,7 @@ export default function EditProfile() {
           setfilePerc(Math.round(progress))
         },
         (error) => {
-            setfileUploadError(true);
+            setfileUploadError('Error Image Upload (image must be less than 2mb)');
             setfilePerc(null)
             setimagefile(null)
             setimagefileUrl(null)
