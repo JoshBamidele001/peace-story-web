@@ -19,7 +19,7 @@ export const updateUser  =  async (req, res, next  ) =>{
             }
             req.body.password = bcryptjs.hashSync(req.body.password, 10)
         } 
-        
+
         const updatedUser = await User.findByIdAndUpdate(req.params.id, {
             $set: {
                 name: req.body.name,
@@ -28,15 +28,24 @@ export const updateUser  =  async (req, res, next  ) =>{
                 avatar: req.body.avatar,
                 phone : req.body.phone,
                 address  : req.body.address,
-                city : req.body.city,
-                state  : req.body.state,
-                country  : req.body.country,
-                zip  :   req.body.zip,
+                nationality : req.body.nationality,
                 twitter  : req.body.twitter,
                 linkedin  : req.body.linkedin,
                 instagram  : req.body.instagram,
-                pinterest  : req.body.pinterest,
+                facebook  : req.body.facebook,
                 youtube  : req.body.youtube,
+                biblical_stories : req.body.biblical_stories,
+                science_fiction : req.body.science_fiction,
+                mystery_thriller : req.body.mystery_thriller,
+                historical_fiction : req.body.historical_fiction,
+                adventure : req.body.adventure,
+                biography : req.body.biography,
+                children_stories : req.body.children_stories,
+                literacy_fiction : req.body.literacy_fiction,
+                humor : req.body.humor,
+                drama : req.body.drama,
+                non_fiction : req.body.non_fiction,
+                poetry : req.body.poetry,   
             }
         }, {new : true}
         
