@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function WriteForYou() {
   return (
-    <div>WriteForYou</div>
+    <div className='pt-24'>WriteForYou</div>
   )
 }

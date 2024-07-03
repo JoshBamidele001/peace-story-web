@@ -10,9 +10,10 @@ import { useNavigate } from 'react-router-dom'
 export default function EditProfile() {
   const {currentUser} = useSelector(state => state.user)
   const [imagefile, setimagefile] = useState(null)
-  const [filePerc, setfilePerc] = useState(0)
-  const [imagefileUrl, setimagefileUrl] = useState()
+  const [filePerc, setfilePerc] = useState(null)
+  const [imagefileUrl, setimagefileUrl] = useState(null)
   const [fileUploadError, setfileUploadError] = useState(false)
+  const [imageFileUploading, setimageFileUploading] = useState(false)
   const [formData, setformData] = useState({})
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -41,6 +42,7 @@ export default function EditProfile() {
         //       }
         //     }
         //   }
+        setimageFileUploading(true)
         setfileUploadError(null)
         const storage = getStorage(app)
         const fileName = new Date().getTime() + imagefile.name;
@@ -56,6 +58,7 @@ export default function EditProfile() {
             setfilePerc(null)
             setimagefile(null)
             setimagefileUrl(null)
+            setimageFileUploading(false)
         },
 
         () => {
@@ -64,6 +67,7 @@ export default function EditProfile() {
 
                 setimagefileUrl(downloadURL);
                 setformData({...formData, avatar: downloadURL})
+                setimageFileUploading(false)
             }
             // setformData({...formData, avatar: downloadURL})
           );
@@ -78,6 +82,9 @@ export default function EditProfile() {
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        if (imageFileUploading){
+            return;
+        }
         try {
             dispatch(updateUserStart());
             const res = await fetch (`/api/user/update/${currentUser._id}`,
