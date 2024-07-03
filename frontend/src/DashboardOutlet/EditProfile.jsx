@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {app} from '../firebase'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
+import { updateUserStart, updateUserSuccess ,updateUserFailure } from '../redux/user/userSlice.js'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate } from 'react-router-dom'
 
 export default function EditProfile() {
   const {currentUser} = useSelector(state => state.user)
@@ -11,11 +13,17 @@ export default function EditProfile() {
   const [filePerc, setfilePerc] = useState(0)
   const [imagefileUrl, setimagefileUrl] = useState()
   const [fileUploadError, setfileUploadError] = useState(false)
+  const [formData, setformData] = useState({})
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+    console.log(formData);
+
+
   const filePickerRef = useRef(null)
   const handleImageChange = (e) =>{
     setimagefile(e.target.files[0]); 
   }
-  console.log(imagefile, filePerc );
+;
      useEffect(()=>{
         if (imagefile){
             uploadImage()
@@ -52,23 +60,64 @@ export default function EditProfile() {
 
         () => {
             getDownloadURL(uploadTask.snapshot.ref).then 
-            ((downloadURL)=>
-                setimagefileUrl(downloadURL)
+            ((downloadURL)=> {
+
+                setimagefileUrl(downloadURL);
+                setformData({...formData, avatar: downloadURL})
+            }
             // setformData({...formData, avatar: downloadURL})
           );
         },
       );
      }
+
+     const handleChange = (e) =>{
+       
+        setformData({...formData, [e.target.id]: e.target.value})
+    }
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        try {
+            dispatch(updateUserStart());
+            const res = await fetch (`/api/user/update/${currentUser._id}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+
+            });
+            const data = await res.json();
+            if (data.success === false){
+                dispatch (updateUserFailure(data.message));
+                return
+            } 
+            dispatch (updateUserSuccess(data))
+            alert("Updated successffully")
+            navigate('/')
+        } catch (error) {
+            dispatch (updateUserFailure(error.message))
+            
+        }
+    }
+
   return (
     <>
 
     <section>
 
       <p className='text-center lg:text-4xl font-semibold my-3'>EDIT PROFILE</p>
+            <form onSubmit={handleSubmit} className='font-semibold'>
 
       <hr /> 
-      <input type="file" accept='image/*'  onChange={handleImageChange} ref={filePickerRef} hidden/>
-        <div className='relative  flex flex-col justify-center items-center ' onClick={()=>filePickerRef.current.click()}>
+
+      <p className='text-center lg:text-2xl font-semibold mt-8 '>SECTION A: PROFILE PICTURE </p>
+      <small className='text-center text-red-500 italic flex items-center justify-center mb-10'>You can change your profile picture at any time</small>
+
+      <input type="file" accept='image/*'  onChange={handleImageChange} ref={filePickerRef} hidden />
+        <div className='relative  flex flex-col justify-center items-center' onClick={()=>filePickerRef.current.click()}> 
                 {filePerc && (
                     <CircularProgressbar value={filePerc || 0} text={`${filePerc}%`}
                     strokeWidth={5}
@@ -82,25 +131,29 @@ export default function EditProfile() {
                         },
                         path: {
                             stroke: `rgba(62, 152, 199, ${
-                                filePerc /  100 
+                                filePerc / 100 
                             })`
                         }
                     }}
                     />
-                )} 
+                )}  
                <img src={imagefileUrl || currentUser.avatar}
                 className={`w-40 h-40 border-8 rounded-full ${filePerc && filePerc< 100 && 'opacity-60 '}`}
                  />
                  {fileUploadError &&
                  (
 
-        <small className='italic text-red-500 text-center '>{fileUploadError}</small>
+                    <small className='italic text-red-500 text-center '>{fileUploadError}</small>
                  )}
         </div>
+                <div className='my-6'>
 
-      <p className='text-center lg:text-2xl font-semibold my-8'>SECTION A: BIODATA</p>
+        <hr />
+                </div>
 
-            <form  className='font-semibold'>
+      <p className='text-center lg:text-2xl font-semibold mt-8'>SECTION B: BIODATA</p>
+      <small className='text-center text-red-500 italic flex items-center justify-center mb-10'>You can cupdate your biodata</small>
+
 
             <div className='grid grid-col grid-cols-1 sm:grid-cols-1 gap-2 md:grid-cols-2 '>
                
@@ -114,7 +167,7 @@ export default function EditProfile() {
                         defaultValue={currentUser.name}
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -129,7 +182,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -140,11 +193,12 @@ export default function EditProfile() {
                         type="Number"
                         name=""
                         id="phone"
+                        
                         defaultValue={currentUser.phone}
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -159,7 +213,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -174,7 +228,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -189,7 +243,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -204,7 +258,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -219,7 +273,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -234,7 +288,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -249,7 +303,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -264,7 +318,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -279,7 +333,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -294,7 +348,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -309,7 +363,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -324,7 +378,7 @@ export default function EditProfile() {
                         className="form-control py-2 rounded-lg px-2 border"
                         placeholder=""
                         aria-describedby="helpId"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                     />
                     {/* <small id="helpId" className="text-muted"></small> */}
                 </div>
@@ -334,7 +388,7 @@ export default function EditProfile() {
 
             </div>
 
-            <p className='text-center lg:text-2xl font-semibold mt-8'>SECTION B: GENRE and CATEGORIES</p>
+            <p className='text-center lg:text-2xl font-semibold mt-8'>SECTION C: GENRE and CATEGORIES</p>
             <small className='text-center text-red-500 italic flex items-center justify-center mb-10'>kindly select two or more from the genre and the categories</small>
 
             <div className=''>
@@ -344,22 +398,27 @@ export default function EditProfile() {
                 <label class="block text-sm font-medium text-gray-700 lg:text-xl">GENRE: </label>
                 <div class="mt-2 space-y-2 grid grid-cols-3">
                     <div class="flex items-center">
-                        <input id="drama" name="genre" type="checkbox" value="drama" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                       checked={currentUser.drama === 'true'}
+                        <input id="drama"  type="checkbox" value="drama" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={true}
+                       onChange={handleChange}
                         />
                         <label for="drama" class="ml-3 block text-sm font-medium text-gray-700">
                             Drama
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="pose" name="genre" type="checkbox" value="pose" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded "/>
+                        <input id="prose"  type="checkbox" value="prose" 
+                        defaultChecked={true}
+                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded "
+                        onChange={handleChange}/>
                         <label for="pose" class="ml-3 block text-sm font-medium text-gray-700">
-                            Pose
+                            Prose
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="poetry" name="genre" type="checkbox" value="poetry" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" 
-                        checked={currentUser.poetry === 'true'}/>
+                        <input id="poetry"  type="checkbox" value="poetry" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" 
+                        defaultChecked = {false} 
+                        onChange={handleChange}/>
                         <label for="poetry" class="ml-3 block text-sm font-medium text-gray-700">
                             Poetry
                         </label>
@@ -373,61 +432,81 @@ export default function EditProfile() {
             <label for="categories" class="block text-sm font-medium text-gray-700 lg:text-xl">CATEGORIES:</label>
                 <div class="mt-2 space-y-2 w-full grid grid-cols-3">
                     <div class="flex items-center">
-                        <input id="biblical_stories" name="categories" type="checkbox" value="biblical_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="biblical_stories" name="categories" type="checkbox" value="biblical_stories" 
+                        defaultChecked={true}
+                        onChange={handleChange}class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
                         <label for="biblical_stories" class="ml-3 block text-sm font-medium text-gray-700">
                             Biblical Stories
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="science_fiction" name="categories" type="checkbox" value="science_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="science_fiction" name="categories" type="checkbox" value="science_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="science_fiction" class="ml-3 block text-sm font-medium text-gray-700">
                             Science Fiction
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="mystery_thriller" name="categories" type="checkbox" value="mystery_thriller" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="mystery_thriller" name="categories" type="checkbox" value="mystery_thriller" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                       defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="mystery_thriller" class="ml-3 block text-sm font-medium text-gray-700">
                             Mystery Thriller
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="historical_fiction" name="categories" type="checkbox" value="historical_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="historical_fiction" name="categories" type="checkbox" value="historical_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="historical_fiction" class="ml-3 block text-sm font-medium text-gray-700">
                             Historical Fiction
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
                             Adventure
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="biography" name="categories" type="checkbox" value="biography" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="biography" name="categories" type="checkbox" value="biography" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="biography" class="ml-3 block text-sm font-medium text-gray-700">
                             Biography
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="children_stories" name="categories" type="checkbox" value="children_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="children_stories" name="categories" type="checkbox" value="children_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="children_stories" class="ml-3 block text-sm font-medium text-gray-700">
                             Children Stories
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="literacy_fiction" name="categories" type="checkbox" value="literacy_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="literacy_fiction" name="categories" type="checkbox" value="literacy_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={true}
+                        onChange={handleChange}/>
                         <label for="literacy_fiction" class="ml-3 block text-sm font-medium text-gray-700">
                             Literary Fiction
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="humor" name="categories" type="checkbox" value="humor" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="humor" name="categories" type="checkbox" value="humor" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="humor" class="ml-3 block text-sm font-medium text-gray-700">
                             Humor
                         </label>
                     </div>
                     <div class="flex items-center">
-                        <input id="non_fiction" name="categories" type="checkbox" value="non_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"/>
+                        <input id="non_fiction" name="categories" type="checkbox" value="non_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        defaultChecked={false}
+                        onChange={handleChange}/>
                         <label for="non_fiction" class="ml-3 block text-sm font-medium text-gray-700">
                             Non-fiction
                         </label>

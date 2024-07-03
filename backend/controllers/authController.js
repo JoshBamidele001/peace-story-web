@@ -37,7 +37,8 @@ export const signup = async (req, res, next)=>{
                 humor,
                 drama,
                 non_fiction,
-                poetry,   
+                poetry, 
+                prose,  
         });
 
         
@@ -121,7 +122,8 @@ export const google = async (req, res, next) => {
                                 humor,
                                 drama,
                                 non_fiction,
-                                poetry,   
+                                poetry, 
+                                prose,  
                         });
 
                                 await newUser.save();

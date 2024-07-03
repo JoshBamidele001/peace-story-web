@@ -15,9 +15,7 @@ export default function Navbar() {
 
   return (
     <>
-
-       
-    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg   '>
+    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg fixed bg-white z-10 '>
                 
        <ul className=' hidden md:flex lg:flex gap-12'>
             <Link to='/'>

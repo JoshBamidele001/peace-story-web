@@ -34,7 +34,7 @@ export default function DashboardSidebar() {
 }
 
   return (
-    <div className='bg-[rgb(16,23,42)] h-screen text-gray-200'>
+    <div className='bg-[rgb(16,23,42)] lg:pb-40 h- sticky top-24 text-gray-200'>
 
         <Link to='/'>
         <div className='flex items-center gap-2 p-10'>

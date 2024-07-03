@@ -45,7 +45,8 @@ export const updateUser  =  async (req, res, next  ) =>{
                 humor : req.body.humor,
                 drama : req.body.drama,
                 non_fiction : req.body.non_fiction,
-                poetry : req.body.poetry,   
+                poetry : req.body.poetry, 
+                prose : req.body.prose, 
             }
         }, {new : true}
         
