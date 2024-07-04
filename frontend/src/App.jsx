@@ -15,6 +15,9 @@ import MyLibrary from './DashboardOutlet/MyLibrary';
 import AddBookListing from './DashboardOutlet/AddBookListing';
 import PrivateRoutes from './pages/PrivateRoutes';
 import SavedBooks from './DashboardOutlet/SavedBooks';
+import OnlyAdminPrivateRoutes from './pages/OnlyAdminPrivateRoutes';
+import CreateAStory from './pages/CreateAStory';
+import Admin from './pages/Admin';
 
 
 
@@ -41,6 +44,13 @@ export default function App() {
                   <Route path='/dashboard/saved_books' element={<SavedBooks/>} />        
 
               </Route>
+          </Route>
+
+          <Route element={<OnlyAdminPrivateRoutes/>}>
+          <Route path='/ad_min' element={<Admin/>}>
+          <Route path='/ad_min' element={<CreateAStory/>} />
+          </Route> 
+             
           </Route>
 
         

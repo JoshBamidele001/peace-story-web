@@ -7,7 +7,7 @@ import { IoLibrary, IoLogOut  } from "react-icons/io5";
 import { logoutUserFailure, logoutUserStart, logoutUserSuccess } from '../redux/user/userSlice';
 
 
-export default function DashboardSidebar() {
+export default function AdminSidebar() {
   const { currentUser } = useSelector(state => state.user);
   const dispatch = useDispatch()
   const navigate = useNavigate()

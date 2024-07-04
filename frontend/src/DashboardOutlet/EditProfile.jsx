@@ -8,7 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom'
 
 export default function EditProfile() {
-  const {currentUser} = useSelector(state => state.user)
+  const {currentUser, loading} = useSelector(state => state.user)
   const [imagefile, setimagefile] = useState(null)
   const [filePerc, setfilePerc] = useState(null)
   const [imagefileUrl, setimagefileUrl] = useState(null)
@@ -523,7 +523,8 @@ export default function EditProfile() {
             </div>
             
 
-            <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-5 text-center w-full rounded-lg'>Update</button>
+            <button  className='bg-blue-600 hover:bg-opacity-70 px-4 py-2 mt-5 text-center w-full rounded-lg' disabled={loading || imageFileUploading} >
+                {loading ? 'Loading...' : 'Update' }</button>
 
             </form>
 

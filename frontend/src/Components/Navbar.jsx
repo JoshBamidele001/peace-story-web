@@ -30,9 +30,17 @@ export default function Navbar() {
             <Link to='/lets-write-for-you'>
             <li>Let's help you write</li>
             </Link>
-            <Link to='about_us'>
+            <Link to='/about_us'>
             <li>About us</li>
             </Link>
+            {
+              currentUser && currentUser.isAdmin && (
+            <Link to='/ad_min'>
+            <li>Admin</li>
+            </Link>
+              )
+            }
+
            
        </ul>
         
@@ -72,11 +80,11 @@ export default function Navbar() {
        <IoMdMenu />
        </div>
 
-       <button type='button' onClick={() => dispatch(toggleTheme())}>
+       {/* <button type='button' onClick={() => dispatch(toggleTheme())}>
           {
             theme === 'light' ? <FaMoon /> : <FaSun />
           } 
-       </button>
+       </button> */}
 
        <div className='md:hidden'>
        <Link to='/sign-up'>
@@ -86,7 +94,7 @@ export default function Navbar() {
        </div>
 
 
-    </div>
+    </div>3
 
 
     </>
