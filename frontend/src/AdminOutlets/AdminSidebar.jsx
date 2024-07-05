@@ -34,7 +34,7 @@ export default function AdminSidebar() {
 }
 
   return (
-    <div className='bg-[rgb(16,23,42)] lg:pb-40 h- sticky top-24 text-gray-200'>
+    <div className='bg-[rgb(19,30,61)] lg:pb-40 h- sticky top-24 text-gray-200'>
 
         <Link to='/'>
         <div className='flex items-center gap-2 p-10'>
@@ -57,23 +57,29 @@ export default function AdminSidebar() {
 
         <ul className='  leading-2 text-semibold'>
 
-            <Link to='/dashboard'>
+            <Link to='/ad_min'>
            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <MdDashboard /> Dashboard</li>
             </Link>
 
-            <Link to='/dashboard/edit_profile'>
-              <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> Edit Profile</li>
+            <Link to='/ad_min/user_profile'>
+              <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> User Profile</li>
             </Link>
            
 
-            <Link to='/dashboard/my_library'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />My Library</li>
+            <Link to='/ad_min/create_post'>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />Create a story</li>
             </Link>
-            <Link to='/dashboard/saved_books'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />Saved Books</li>
+            <Link to='/ad_min/all_posts'>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />All Posts</li>
             </Link>
-            <Link to='/dashboard/add_book_listing'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Add book listing</li>
+            <Link to='/ad_min/table_list'>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Table List</li>
+            </Link>
+            <Link to='/ad_min/setting'>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Setting</li>
+            </Link>
+            <Link to='/ad_min/error'>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Error 404</li>
             </Link>
             <li onClick={handlelogout} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
         </ul>
