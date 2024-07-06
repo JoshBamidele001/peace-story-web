@@ -34,7 +34,7 @@ export default function AdminSidebar() {
 }
 
   return (
-    <div className='bg-[rgb(19,30,61)] lg:pb-40 h- sticky top-24 text-gray-200'>
+    <div className='bg-[rgb(19,30,61)] lg:pb-40 h- lg:sticky lg:top-24 text-gray-200'>
 
         <Link to='/'>
         <div className='flex items-center gap-2 p-10'>

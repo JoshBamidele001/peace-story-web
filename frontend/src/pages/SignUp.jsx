@@ -111,17 +111,17 @@ const handleSubmit = async (e)=>{
                 )
               }
               <div className="mb-4">
-                <label className='block text-gray-700' for="name">Name</label>
+                <label className='block text-gray-700' htmlFor="name">Name</label>
                 <input
                 className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="text" id="name" onChange={handleChange} />
               </div>
               <div className="mb-4">
-                  <label className='block text-gray-700' for="email">Email</label>
+                  <label className='block text-gray-700' htmlFor="email">Email</label>
                   <input
                   className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="email" id="email" onChange={handleChange} />
               </div>
               <div className="mb-4 relative">
-                <label className='block text-gray-700' for="password">Password</label>
+                <label className='block text-gray-700' htmlFor="password">Password</label>
                 <input 
                   value={password}
                   onChange={handlePasswordChange}
@@ -135,7 +135,7 @@ const handleSubmit = async (e)=>{
               </div>
 
               <div className="mb-4 relative">
-                <label className='block text-gray-700' for="password"> Confirm Password</label>
+                <label className='block text-gray-700' htmlFor="password"> Confirm Password</label>
                 <input 
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}

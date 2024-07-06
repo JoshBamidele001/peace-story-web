@@ -92,12 +92,12 @@ const handleSubmit = async (e)=>{
               }
             
               <div className="mb-4">
-                  <label className='block text-gray-700' for="email">Email</label>
+                  <label className='block text-gray-700' htmlFor="email">Email</label>
                   <input
                   className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="email" id="email" onChange={handleChange} />
               </div>
               <div className="mb-4 relative">
-                <label className='block text-gray-700' for="password">Password</label>
+                <label className='block text-gray-700' htmlFor="password">Password</label>
                 <input 
                   
                   onChange={handleChange}
@@ -115,7 +115,7 @@ const handleSubmit = async (e)=>{
               
               
               <button
-              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} disabled={loading} >Sign In </button>
+              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}}  >Sign In </button>
 
               <OAuth/>
           

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import userRouter from './routes/userRoute.js';
 import authRouter from './routes/authRoute.js'
+import postRouter from './routes/postRoute.js'
 import cookieParser from 'cookie-parser';
 
 dotenv.config()
@@ -22,6 +23,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/post", postRouter);
 
 
 
