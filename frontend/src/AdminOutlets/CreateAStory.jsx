@@ -1,8 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import {getDownloadURL, getStorage, ref,  uploadBytesResumable} from 'firebase/storage'
+import { app } from '../firebase'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+
 
 export default function CreateAStory() {
+  const [file, setfile] = useState(null)
+  const [imageUploadProgress, setimageUploadProgress] = useState(null)
+  const [imageUploadError, setimageUploadError] = useState(null)
+  const [formData, setformData] = useState({})
+  const handleUploadImage = async ()=>{
+      try {
+        if (!file){
+          setimageUploadProgress('Please select an')
+          return
+        }
+        setimageUploadError(null)
+        const storage = getStorage(app)
+        const fileName = new Date().getTime() + '-' + file.name;
+        const storageRef = ref(storage, fileName);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        uploadTask.on(
+          'state_changed',
+          (snapshot) =>{
+            const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setimageUploadProgress(progress.toFixed(0));
+          },
+          (error) => {
+            setimageUploadError('Image upload failed, , image size must be less than 2mb');
+            setimageUploadProgress(null)
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+              setimageUploadProgress(null);
+              setimageUploadError(null)
+              setformData({...formData, image: downloadURL});
+            });
+          }
+        );
+      } catch (error) {
+        setimageUploadError('Image upload failed');
+        setimageUploadProgress(null);
+        console.log(error);
+        
+      }
+  }
   return (
     <div>
       
@@ -51,17 +98,46 @@ export default function CreateAStory() {
             </div>
 
               <label htmlFor="file" className='font-semibold'>Upload cover page of your story: </label>
-            <div className='border-dotted py-2 my-3 bg-gray-400 rounded-xl'>
-              <input type="file" accept='image/*' className='p-2'/>
-              <button className='border px-2 py-2 rounded-xl bg-black text-white '>UPLOAD IMAGES</button>
+            <div className='border-dotted py-2 my-3 bg-gray-400 rounded-xl flex justify-between items-center'>
+              <input type="file" accept='image/*' className='p-2'
+              onChange={(e)=> setfile(e.target.files[0])} />
+              <button className='border px-2 py-2 rounded-xl bg-black text-white me-4'
+               onClick={handleUploadImage} 
+               disabled={imageUploadProgress}>
+                {
+                  imageUploadProgress ?
+                  ( <div className='w-16 h-16'>
+                    <CircularProgressbar 
+                     value={imageUploadProgress}
+                     text={`${imageUploadProgress || 0 }%`} 
+                    /> 
+                  </div> )
+                  : ( 'Upload Image' )
+                }
+                  </button>
            </div>
+           {imageUploadError && <small className='text-red-600 italic my-5 bg-slate-100  rounded p-2'>{imageUploadError}</small>}
+           
 
-           <div>
+
+           <div className='mt-3'>
               <ReactQuill theme="snow" placeholder='Write something...'
               className='h-72 mb-12 '/>
            </div>
 
-           <button className='w-full bg-blue-950 text-white py-2 rounded-xl my-3'>PUBLISH</button>
+           {
+              formData.image && (
+                <div>
+                  <img src={formData.image}
+                  alt= 'upload'
+                  className='w-full h-72 object-contain' 
+                  />
+                </div>
+              )
+            }
+
+           <button className='w-full bg-blue-950 text-white py-2 rounded-xl my-3'
+          >PUBLISH</button>
 
       </div>
       
