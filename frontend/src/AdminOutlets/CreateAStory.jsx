@@ -16,7 +16,8 @@ export default function CreateAStory() {
   const handleUploadImage = async ()=>{
       try {
         if (!file){
-          setimageUploadProgress('Please select an')
+          setimageUploadProgress(null)
+          setimageUploadError('Please select an image')
           return
         }
         setimageUploadError(null)
@@ -31,6 +32,7 @@ export default function CreateAStory() {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             setimageUploadProgress(progress.toFixed(0));
           },
+         
           (error) => {
             setimageUploadError('Image upload failed, , image size must be less than 2mb');
             setimageUploadProgress(null)
@@ -99,20 +101,23 @@ export default function CreateAStory() {
 
               <label htmlFor="file" className='font-semibold'>Upload cover page of your story: </label>
             <div className='border-dotted py-2 my-3 bg-gray-400 rounded-xl flex justify-between items-center'>
+              
               <input type="file" accept='image/*' className='p-2'
               onChange={(e)=> setfile(e.target.files[0])} />
+
               <button className='border px-2 py-2 rounded-xl bg-black text-white me-4'
                onClick={handleUploadImage} 
                disabled={imageUploadProgress}>
-                {
-                  imageUploadProgress ?
+                {imageUploadProgress ?
                   ( <div className='w-16 h-16'>
                     <CircularProgressbar 
                      value={imageUploadProgress}
                      text={`${imageUploadProgress || 0 }%`} 
                     /> 
-                  </div> )
-                  : ( 'Upload Image' )
+                  </div>
+                  )
+                  : ( 
+                    'Upload Image' )
                 }
                   </button>
            </div>
