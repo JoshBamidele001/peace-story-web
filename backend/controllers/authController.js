@@ -84,7 +84,7 @@ export const signin = async (req, res, next) => {
 }
 
 export const google = async (req, res, next) => {
-        const {email, name, googlePhotoUrl } = req.body;
+        const {email, name, googlePhotoUrl, phone, address, nationality, twitter, linkedin, instagram, facebook, youtube, biblical_stories, science_fiction, mystery_thriller, historical_fiction, adventure, biography, children_stories, literacy_fiction, humor, drama, non_fiction, poetry, prose } = req.body;
 
         try {
                 const user = await User.findOne({email});
