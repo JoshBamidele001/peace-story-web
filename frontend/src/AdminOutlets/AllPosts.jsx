@@ -5,23 +5,42 @@ import { Link } from 'react-router-dom';
 export default function AllPosts() {
   const { currentUser } = useSelector((state)=> state.user)
   const [userPosts, setuserPosts] = useState([])
-  console.log(userPosts);
+  const [showMore, setshowMore] = useState(true) 
   useEffect(() => {
    const fetchPosts = async () => {
     try {
       const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`)
       const data = await res.json()
       if(res.ok){
-        setuserPosts(data.posts)
+        setuserPosts(data.posts);
+        if (data.posts.length < 9){
+          setshowMore(false);
+        }
       }
     } catch (error) {
       console.log(error.message);
-    }
+    } 
    };
 
    fetchPosts()
     
   }, [currentUser._id])
+
+  const handleShowMore = async () =>{
+    const startIndex = userPosts.length;
+    try {
+      const res = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`);
+      const data = await res.json();
+      if (res.ok){
+        setuserPosts((prev)=> [...prev, ...data.posts]);
+        if(data.posts.length < 9){
+          setshowMore(false)
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   return (
     <>
@@ -31,8 +50,13 @@ export default function AllPosts() {
             <p className=' text-lg'>ADMIN Dashboard</p>
             <small>HOME - ADMIN - ALL POST</small>
       </div>
-      {
+     
+     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100'>
+
+     {
         userPosts.length > 0 ? (
+         <div>
+
           <table class="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
@@ -75,11 +99,24 @@ export default function AllPosts() {
 
                 }
           </table>
+
+          {showMore && (
+            <button className='text-green-600 p-3 my-2 font-semibold'
+            onClick={handleShowMore}>SHOW MORE</button>
+          )}
+
+          
+
+         </div>
+
+           
         ) : (
           <p>You dont have a post yet</p>
         )
       }
 
+
+     </div>
       
     </>
   )
