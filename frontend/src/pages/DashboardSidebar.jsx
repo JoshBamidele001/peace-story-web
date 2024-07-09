@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Modal from '../Components/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSwatchbook, FaEdit, FaAddressBook, FaSave  } from "react-icons/fa";
@@ -9,10 +10,19 @@ import { logoutUserFailure, logoutUserStart, logoutUserSuccess } from '../redux/
 
 export default function DashboardSidebar() {
   const { currentUser } = useSelector(state => state.user);
+  const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handlelogout = async () => {
+  const handleLogoutClick = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const confirmLogout = async () => {
     try {
       dispatch(logoutUserStart())
       const res = await fetch('/api/auth/logout');
@@ -22,8 +32,9 @@ export default function DashboardSidebar() {
         return
       }
       //not solved totally
+      
       dispatch(logoutUserSuccess(data))
-      alert("logout successfull")
+      alert("logout successfully")
       navigate('/sign-in') 
 
 
@@ -75,8 +86,16 @@ export default function DashboardSidebar() {
             <Link to='/dashboard/add_book_listing'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Add book listing</li>
             </Link>
-            <li onClick={handlelogout} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
+            <li onClick={handleLogoutClick} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
         </ul>
+                  <Modal
+                  isOpen={isModalOpen}
+                  onClose={closeModal}
+                  onConfirm={confirmLogout}
+                  title="Log Out"
+                >
+              Are you sure you want to log out?
+            </Modal>
     </div>
   )
 }

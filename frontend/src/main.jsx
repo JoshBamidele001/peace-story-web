@@ -11,7 +11,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <PersistGate persistor={persistor}>
     <Provider store={store}>
-      
+        <ThemeProvider></ThemeProvider>
          <App />
       
     </Provider>

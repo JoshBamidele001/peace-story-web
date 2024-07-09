@@ -101,7 +101,7 @@ export default function AllPosts() {
           </table>
 
           {showMore && (
-            <button className='text-green-600 p-3 my-2 font-semibold'
+            <button className='text-green-600 p-3 my-2 font-semibold hover:underline'
             onClick={handleShowMore}>SHOW MORE</button>
           )}
 
