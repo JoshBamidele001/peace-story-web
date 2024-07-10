@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import Modal from '../Components/Modal';
 
 export default function AllPosts() {
   const { currentUser } = useSelector((state)=> state.user)
   const [userPosts, setuserPosts] = useState([])
   const [showMore, setshowMore] = useState(true) 
+  const [postIdToDelete, setpostIdToDelete] = useState('')
+  const [isModalOpen, setModalOpen] = useState(false);
+
   useEffect(() => {
    const fetchPosts = async () => {
     try {
@@ -41,6 +45,33 @@ export default function AllPosts() {
       console.log(error);
     }
   }
+
+  // const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+  const confirmDelete = async () => {
+    setModalOpen(false);
+    try {
+      const res = await fetch(`/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok){
+        console.log(data.message);;
+
+      }else {
+        setuserPosts((prev)=>
+        prev.filter((post) => post._id !== postIdToDelete))
+      }
+
+     
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   
   return (
     <>
@@ -90,7 +121,11 @@ export default function AllPosts() {
                             <p className='text-green-500 font-semibold hover:underline'>Edit</p>
                             </Link>
                             
-                            <p className='text-red-500 font-semibold hover:underline'>Delete</p>
+                            <button className='text-red-500 font-semibold hover:underline'
+                             onClick={()=> {
+                              setModalOpen(true);
+                              setpostIdToDelete(post._id)
+                             }}>Delete</button>
                           </td>
                           
                       </tr>
@@ -99,6 +134,15 @@ export default function AllPosts() {
 
                 }
           </table>
+
+              <Modal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onConfirm={confirmDelete}
+                title="Delete Post"
+              >
+            Are you sure you want to delete this post?
+          </Modal>
 
           {showMore && (
             <button className='text-green-600 p-3 my-2 font-semibold hover:underline'

@@ -6,9 +6,28 @@ export default function DashboardSummary() {
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
-  const confirmDelete = () => {
-    console.log('Post deleted');
+  const confirmDelete = async () => {
     setModalOpen(false);
+    try {
+      const res = await fetch(`/api/post/deletepost/${postIdToDelete}/${currentUser.id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
+      if (!res.ok){
+        console.log(data.message);;
+
+      }else {
+        setUserPosts((prev)=>
+        prev.filter((post) => post._id !== postIdToDelete))
+      }
+
+     
+    } catch (error) {
+      
+    }
+
   };
 
   return (
