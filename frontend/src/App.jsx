@@ -24,6 +24,7 @@ import Setting from './AdminOutlets/Setting';
 import Error404 from './AdminOutlets/Error404';
 import Table from './AdminOutlets/Table';
 import CreateAStory from './AdminOutlets/CreateAStory';
+import UpdatePost from './AdminOutlets/UpdatePost';
 
 
 
@@ -54,13 +55,14 @@ export default function App() {
 
           <Route element={<OnlyAdminPrivateRoutes/>}>
           <Route path='/ad_min' element={<Admin/>}>
-          <Route path='/ad_min' element={<DashboardSummary/>} />
-          <Route path='/ad_min/create_post' element={<CreateAStory/>} />
-          <Route path='/ad_min/all_posts' element={<AllPosts/>} />
-          <Route path='/ad_min/user_profile' element={<UserProfile/>} />
-          <Route path='/ad_min/setting' element={<Setting/>} />
-          <Route path='/ad_min/error' element={<Error404/>} />
-          <Route path='/ad_min/table_list' element={<Table/>} />
+              <Route path='/ad_min' element={<DashboardSummary/>} />
+              <Route path='/ad_min/create_post' element={<CreateAStory/>} />
+              <Route path='/ad_min/all_posts' element={<AllPosts/>} />
+              <Route path='/ad_min/user_profile' element={<UserProfile/>} />
+              <Route path='/ad_min/setting' element={<Setting/>} />
+              <Route path='/ad_min/error' element={<Error404/>} />
+              <Route path='/ad_min/table_list' element={<Table/>} />
+              <Route path='/ad_min/update-post/:postId' element={<UpdatePost/>} />
           </Route> 
              
           </Route>
