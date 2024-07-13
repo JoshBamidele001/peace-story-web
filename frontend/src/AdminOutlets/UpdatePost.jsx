@@ -17,21 +17,23 @@ export default function UpdatePost() {
   const [imageUploadError, setimageUploadError] = useState(null)
   const [publishError, setpublishError] = useState(null)
   const [formData, setformData] = useState({})
-  const { postId } = useParams();
+  const {postId} = useParams();
   const navigate = useNavigate()
+  console.log(formData);
   
   useEffect(() => {
     try {
       const fetchPost = async () =>{
-        const res = await fetch(`/api/post/getposts?#postId=${postId}`);
+        const res = await fetch(`/api/post/getposts?3postId=${postId}`);
         const data = await res.json();
         if (!res.ok){
           console.log(data.message);
           setpublishError(data.message)
           return;
         }
+        
         if (res.ok){
-          setpublishError(null)
+          setpublishError(null);
           setformData(data.posts[0]);
         }
         
