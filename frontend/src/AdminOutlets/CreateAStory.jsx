@@ -94,11 +94,39 @@ export default function CreateAStory() {
       
       <form className='px-1' onSubmit={handleSubmit} >
         <p className='text-center text-2xl font-semibold my-5 '>CREATE A STORY</p>
-          <div>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+            <div>
               <label className='pe-3 font-semibold' htmlFor="title"> Title:</label>
               <input type="text" id='title' className='border-2 rounded-lg w-full p-2'
-              onChange={(e)=> setformData({... formData, title: e.target.value})} />
+              onChange={(e)=> setformData({... formData, title: e.target.value})}
+               />
+            </div>
+            <div>
+            <label className='pe-3 font-semibold' htmlFor="author"> Author:</label>
+              <input type="text" id='author' className='border-2 rounded-lg w-full p-2'
+              onChange={(e)=> setformData({... formData, author: e.target.value})} />
+            </div>
           </div>
+
+            <div className="my-3 grid grid-cols-1" >
+              <label className='pe-3 font-semibold' htmlFor="biography"> Biography of the Author:</label>
+              <textarea
+                  
+                  type='text'
+                  className='rounded p-3 border'
+                   id="biography" 
+                   cols="30" 
+                   rows="5"
+                   required
+                   onChange={(e)=> setformData({... formData, biography: e.target.value})}
+                  //  value={formData.title}
+                     >
+                   
+                 </textarea>
+            </div>
+
+          
+
            <div className='mt-5'>
             <label htmlFor="genre" className='font-semibold'>Genre:</label>
               <select name="genre" class="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -134,6 +162,7 @@ export default function CreateAStory() {
               <label htmlFor="file" className='font-semibold'>Upload cover page of your story: </label>
             <div className='border-dotted py-2 my-3 bg-gray-400 rounded-xl flex justify-between items-center'>
               
+              
               <input type="file" accept='image/*' className='p-2'
               onChange={(e)=> setfile(e.target.files[0])} />
 
@@ -155,7 +184,23 @@ export default function CreateAStory() {
            </div>
            {imageUploadError && <small className='text-red-600 italic my-5 bg-slate-100  rounded p-2'>{imageUploadError}</small>}
            
-
+            
+           <div className="my-3 grid grid-cols-1" >
+              <label className='pe-3 font-semibold' htmlFor="synopsis"> Synopsis of Story:</label>
+              <textarea
+                  
+                  type='text'
+                  className='rounded p-3 border'
+                   id="synopsis" 
+                   cols="30" 
+                   rows="5"
+                   required
+                   onChange={(e)=> setformData({... formData, synopsis: e.target.value})}
+                  //  value={formData.title}
+                     >
+                   
+                 </textarea>
+            </div>
 
            <div className='mt-3'>
               <ReactQuill theme="snow" placeholder='Write something...'

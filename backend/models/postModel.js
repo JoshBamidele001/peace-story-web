@@ -10,7 +10,21 @@ const postSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        synopsis: {
+            type: String,
+            required: true,
+        },
         title: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        author: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        biography: {
             type: String,
             required: true,
             unique: true,

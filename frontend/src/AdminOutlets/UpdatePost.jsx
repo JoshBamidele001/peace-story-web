@@ -122,12 +122,39 @@ export default function UpdatePost() {
       
       <form className='px-1' onSubmit={handleSubmit} >
         <p className='text-center text-2xl font-semibold my-5 '>Update Story</p>
-          <div>
-              <label className='pe-3 font-semibold' htmlFor="title"> Title:</label>
-              <input type="text" id='title' required className='border-2 rounded-lg w-full p-2'
-              onChange={(e)=> setformData({... formData, title: e.target.value})}
-              value={formData.title || ''} />
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
+            <div>
+                <label className='pe-3 font-semibold' htmlFor="title"> Title:</label>
+                <input type="text" id='title' required className='border-2 rounded-lg w-full p-2'
+                onChange={(e)=> setformData({... formData, title: e.target.value})}
+                value={formData.title || ''} />
+            </div>
+            <div>
+            <label className='pe-3 font-semibold' htmlFor="author"> Author:</label>
+              <input type="text" id='author' className='border-2 rounded-lg w-full p-2'
+              onChange={(e)=> setformData({... formData, author: e.target.value})} 
+              value={formData.author || ''} />
+            </div>
           </div>
+
+          <div className="my-3 grid grid-cols-1" >
+              <label className='pe-3 font-semibold' htmlFor="biography"> Biography of the Author:</label>
+              <textarea
+                  
+                  type='text'
+                  className='rounded p-3 border'
+                   id="biography" 
+                   cols="30" 
+                   rows="5"
+                   required
+                   onChange={(e)=> setformData({... formData, biography: e.target.value})}
+                   value={formData.biography || ''}
+                     >
+                   
+                 </textarea>
+            </div>
+
+
            <div className='mt-5'>
             <label htmlFor="genre" className='font-semibold'>Genre:</label>
               <select name="genre" class="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -186,7 +213,22 @@ export default function UpdatePost() {
            </div>
            {imageUploadError && <small className='text-red-600 italic my-5 bg-slate-100  rounded p-2'>{imageUploadError}</small>}
            
-
+           <div className="my-3 grid grid-cols-1" >
+              <label className='pe-3 font-semibold' htmlFor="synopsis"> Synopsis of Story:</label>
+              <textarea
+                  
+                  type='text'
+                  className='rounded p-3 border'
+                   id="synopsis" 
+                   cols="30" 
+                   rows="5"
+                   required
+                   onChange={(e)=> setformData({... formData, synopsis: e.target.value})}
+                   value={formData.synopsis}
+                     >
+                   
+                 </textarea>
+            </div>
 
            <div className='mt-3'>
               <ReactQuill theme="snow" 

@@ -39,6 +39,7 @@ export const getposts = async (req, res, next) =>{
                 $or: [
                     { title: {$regrex: req.query.searchTerm, $options: 'i'}},
                     { content: {$regrex: req.query.searchTerm, $options: 'i'}},
+                    { author: {$regrex: req.query.searchTerm, $options: 'i'}},
                 ],
             }),
 
@@ -92,6 +93,9 @@ export const updatepost = async (req, res, next) => {
             {
                 $set: {
                     title: req.body.title,
+                    author: req.body.author,
+                    biography: req.body.biography,
+                    synopsis: req.body.synopsis,
                     content: req.body.content,
                     genre: req.body.genre,
                     category: req.body.category,
