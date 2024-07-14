@@ -72,7 +72,7 @@ export default function AdminSidebar() {
             </Link>
 
             <Link to='/ad_min/user_profile'>
-              <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> User Profile</li>
+              <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> All Users</li>
             </Link>
            
 

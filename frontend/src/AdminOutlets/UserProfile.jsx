@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import Modal from '../Components/Modal';
+import { FaTimes } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 export default function UsersDashboard() {
   const { currentUser } = useSelector((state)=> state.user)
@@ -48,29 +50,30 @@ export default function UsersDashboard() {
 
   // const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
-  // const confirmDelete = async () => {
-  //   setModalOpen(false);
-  //   try {
-  //     const res = await fetch(`/api/user/deletepost/${userIdToDelete}/${currentUser._id}`,
-  //       {
-  //         method: 'DELETE',
-  //       }
-  //     );
-  //     const data = await res.json();
+  const confirmDelete = async () => {
+    setModalOpen(false);
+    try {
+      const res = await fetch(`/api/user/delete/${userIdToDelete}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
 
-  //     if (!res.ok){
-  //       console.log(data.message);;
+      if (!res.ok){
+        console.log(data.message);;
 
-  //     }else {
-  //       setuserPosts((prev)=>
-  //       prev.filter((post) => post._id !== postIdToDelete))
-  //     }
+      }else {
+        setusers((prev)=>
+        prev.filter((users) => users._id !== userIdToDelete))
+        setModalOpen(false)
+      }
 
      
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   
   return (
@@ -79,7 +82,7 @@ export default function UsersDashboard() {
 
       <div className='bg-[rgb(19,30,61)] h-32 text-gray-200 flex items-center justify-center flex-col'>
             <p className=' text-lg'>ADMIN Dashboard</p>
-            <small>HOME - ADMIN - ALL POST</small>
+            <small>Home - Admin - All Users</small>
       </div>
      
      <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100'>
@@ -114,13 +117,15 @@ export default function UsersDashboard() {
                           {users.name}</td>
 
                           <td className=" px-4 py-3  my-5" >{users.email}</td>
-                          <td className=" px-4 py-3  my-5" ></td>
-                          <td className=" px-4 py-3  my-5" >  Delete                         
-                            {/* <button className='text-red-500 font-semibold hover:underline'
+                          <td className=" px-4 py-3  my-5" >
+                            {users.isAdmin ? <FaCheck className='text-green-500' /> : <FaTimes className='text-red-500'/>
+                                     }</td>
+                          <td className=" px-4 py-3  my-5" >                        
+                            <button className='text-red-500 font-semibold hover:underline'
                              onClick={()=> {
                               setModalOpen(true);
-                              setpostIdToDelete(post._id)
-                             }}>Delete</button> */}
+                              setuserIdToDelete(users._id)
+                             }}>Delete</button>
                           </td>
                           
                       </tr>
@@ -130,14 +135,14 @@ export default function UsersDashboard() {
                 }
           </table>
 
-              {/* <Modal
+              <Modal
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 onConfirm={confirmDelete}
                 title="Delete Post"
               >
             Are you sure you want to delete this post?
-          </Modal> */}
+          </Modal>
 
           {showMore && (
             <button className='text-green-600 p-3 my-2 font-semibold hover:underline'
