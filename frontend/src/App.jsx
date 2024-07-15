@@ -26,6 +26,7 @@ import CreateAStory from './AdminOutlets/CreateAStory';
 import UpdatePost from './AdminOutlets/UpdatePost';
 import UsersDashboard from './AdminOutlets/UserProfile';
 import PostPage from './pages/PostPage';
+import ReadAPost from './pages/ReadAPost';
 
 
 
@@ -44,6 +45,7 @@ export default function App() {
         <Route path='/post/:postSlug' element= {<PostPage/>} />
 
         <Route element={<PrivateRoutes/>}>
+          <Route path='/post/read/:postSlug' element={<ReadAPost/>} />      
               <Route path='/dashboard' element={<Dashboard/>}> 
                   
                   <Route path='/dashboard' element={<AllProfile/>} />
@@ -51,6 +53,7 @@ export default function App() {
                   <Route path='/dashboard/my_library' element={<MyLibrary/>} />
                   <Route path='/dashboard/add_book_listing' element={<AddBookListing/>} />
                   <Route path='/dashboard/saved_books' element={<SavedBooks/>} />        
+                    
 
               </Route>
           </Route>
