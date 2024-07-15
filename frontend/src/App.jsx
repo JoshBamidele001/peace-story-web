@@ -25,6 +25,7 @@ import Table from './AdminOutlets/Table';
 import CreateAStory from './AdminOutlets/CreateAStory';
 import UpdatePost from './AdminOutlets/UpdatePost';
 import UsersDashboard from './AdminOutlets/UserProfile';
+import PostPage from './pages/PostPage';
 
 
 
@@ -40,6 +41,7 @@ export default function App() {
         <Route path='/sign-in' element= {<SignIn/>} />
         <Route path='/publish' element= {<Publish/>} />
         <Route path='/lets-write-for-you' element= {<WriteForYou/>} />
+        <Route path='/post/:postSlug' element= {<PostPage/>} />
 
         <Route element={<PrivateRoutes/>}>
               <Route path='/dashboard' element={<Dashboard/>}> 

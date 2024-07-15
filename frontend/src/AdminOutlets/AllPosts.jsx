@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import Modal from '../Components/Modal';
+import Spinner from '../pages/Spinner';
 
 export default function AllPosts() {
   const { currentUser } = useSelector((state)=> state.user)
@@ -9,13 +10,16 @@ export default function AllPosts() {
   const [showMore, setshowMore] = useState(true) 
   const [postIdToDelete, setpostIdToDelete] = useState('')
   const [isModalOpen, setModalOpen] = useState(false);
+  const [ loading, setloading] = useState(true);
 
   useEffect(() => {
    const fetchPosts = async () => {
     try {
+      setloading(true)
       const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`)
       const data = await res.json()
       if(res.ok){
+        setloading(false)
         setuserPosts(data.posts);
         if (data.posts.length < 9){
           setshowMore(false);
@@ -68,9 +72,14 @@ export default function AllPosts() {
 
      
     } catch (error) {
+      setloading(false)
       console.log(error.message);
     }
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   
   return (
