@@ -84,7 +84,7 @@ export default function ReadAPost() {
         </div>
         <div ref={contentRef} className="overflow-y-auto h-full max-h-screen">
           <div
-            className="p-3 max-w-3xl mx-auto text-justify"
+            className="p-3 max-w-3xl mx-auto text-justify post-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
           ></div>
         </div>

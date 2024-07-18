@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Spinner from './Spinner';
+import CalltoAction from './CalltoAction';
 
 export default function PostPage() {
 
@@ -174,7 +175,11 @@ export default function PostPage() {
               <p>{post.biography}</p>
                 
               </div>
-
+        
+        </div>
+                  {/* the call to action */}
+        <div className='max-w-7xl mx-auto w-full'>
+            <CalltoAction/>
         </div>
 
           <p className=' max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
@@ -202,7 +207,6 @@ export default function PostPage() {
             ) : ''
           }
      
-
      {
             post.genre === 'drama' ? (
 
