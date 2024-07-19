@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Spinner from './Spinner';
 import CalltoAction from './CalltoAction';
+import CommentSection from './CommentSection';
 
 export default function PostPage() {
 
@@ -13,8 +14,7 @@ export default function PostPage() {
   const [similarStory, setsimilarStory] = useState([])
   const [similarDrama, setsimilarDrama] = useState([])
   const [similarPoetry, setsimilarPoetry] = useState([])
-  console.log(similarStory);
-  console.log(similarDrama);
+ 
  
 
   useEffect(() => {
@@ -137,7 +137,7 @@ export default function PostPage() {
   return (
     <main className="pt-24 ">
      
-        <div className='h-80 border-b shadow-lg shadow-slate-600 flex items-center justify-center self-center'>
+        <div className='h-80 border-b shadow-lg pb-5 shadow-slate-600 flex items-center justify-center self-center'>
             <img src={post.image}
             className='p-3 w-56 pb-5' alt={post.title} />
             <div>
@@ -180,6 +180,7 @@ export default function PostPage() {
                   {/* the call to action */}
         <div className='max-w-7xl mx-auto w-full'>
             <CalltoAction/>
+            <CommentSection postId = {post._id}/>
         </div>
 
           <p className=' max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
@@ -190,7 +191,7 @@ export default function PostPage() {
      <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
       { 
         similarStory.map((posts) =>(
-          <Link to={`/post/${posts.slug}`}>
+          <Link to={`/post/${posts.slug}`} key={posts.slug}>
          <div >
            <img src={posts.image} 
           className='w-72 h-72' alt={posts.title} />
@@ -213,7 +214,7 @@ export default function PostPage() {
      <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
       { 
         similarDrama.map((posts) =>(
-          <Link to={`/post/${posts.slug}`}>
+          <Link to={`/post/${posts.slug}`} key={posts.slug}>
          <div >
            <img src={posts.image} 
           className='w-72 h-72' alt={posts.title} />
@@ -237,7 +238,7 @@ export default function PostPage() {
      <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
       { 
         similarPoetry.map((posts) =>(
-          <Link to={`/post/${posts.slug}`}>
+          <Link to={`/post/${posts.slug}`} key={posts.slug}>
          <div >
            <img src={posts.image} 
           className='w-72 h-72' alt={posts.title} />

@@ -82,7 +82,7 @@ export default function ReadAPost() {
 
   return (
     <main className="pt-24 mx-10 lg:mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] relative">
+      <div className="grid grid-cols-1 lg:grid-cols-[20%_50%_30%] relative">
         <div className="lg:sticky lg:top-0 p-5">
           <img src={post.image} className="p-3 w-96" alt={post.title} />
           <div>{post.title}</div>
