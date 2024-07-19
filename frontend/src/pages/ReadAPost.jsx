@@ -97,7 +97,14 @@ export default function ReadAPost() {
         </div>
 
         {/* Likes and comment section */}
+        <div>
+        <p className='p-5 text-2xl'>LIKES AND COMMENTS</p>
+          <span className='text-gray-500 text-sm px-5'>Kindly like and share your comments</span>
+             <img src="https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/call%20to%20action%20and%20other%20images%2FAdd%20comments.jpg?alt=media&token=fd4e68ed-348f-491f-ae19-038aa81150f6" className="p-3 w-96 h-96" />
+        
+
           <CommentSection postId = {post._id}/>
+        </div>
       </div>
     </main>
   );

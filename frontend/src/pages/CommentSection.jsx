@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {  useSelector } from 'react-redux'
 import Comment from '../Components/Comment';
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function CommentSection({postId}) {
     const { currentUser } = useSelector(state => state.user);
     const [commentError, setcommentError] = useState(null)
     const [comment, setcomment] = useState('')
-    const [comments, setcomments] = useState([])
+    const [comments, setcomments] = useState([]);
+    const navigate = useNavigate()
     console.log(comments);
 
     const handleSubmit = async (e) =>{
@@ -49,11 +51,32 @@ export default function CommentSection({postId}) {
         getComments()
     }, [postId])
 
+    const handleLike = async (commentId) =>{
+        try {
+            if (!currentUser){
+                navigate('/sign-in')
+                return
+            }
+            const res = await fetch(`/api/comment/likeComment/${commentId}`, {
+                method: 'PUT',
+
+            });
+            if (res.ok){
+                const data = await res.json();
+                setcomments(comments.map((comment) => 
+                    comment._id === commentId ? {
+                        ...comment,
+                        likes: data.likes,
+                        numberOfLikes: data.likes.length,
+                    } : comment
+                ))
+            }
+        } catch (error) {
+            next(error)
+        }
+    }
   return (
     <div className='w-full p-3'>
-          <p className='p-5 text-2xl'>LIKES AND COMMENTS</p>
-          <span className='text-gray-500 text-sm px-5'>Kindly like and share your comments</span>
-             <img src="https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/call%20to%20action%20and%20other%20images%2FAdd%20comments.jpg?alt=media&token=fd4e68ed-348f-491f-ae19-038aa81150f6" className="p-3 w-96 h-96" />
         
         <div className='border rounded '>
               <form onSubmit={handleSubmit}>
@@ -101,7 +124,7 @@ export default function CommentSection({postId}) {
                 {
                     comments.map((comment) => (
                         <Comment  key= {comment._id}
-                        comment= {comment}/>
+                        comment= {comment} onLike={handleLike}/>
                     ))
                 }
 

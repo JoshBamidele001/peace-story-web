@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import {  useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom';
 import Spinner from './Spinner';
 import CalltoAction from './CalltoAction';
 import CommentSection from './CommentSection';
 
 export default function PostPage() {
-
+  const { currentUser } = useSelector(state => state.user);
   const { postSlug } = useParams();
   // const {postGenre } = useParams();
   const [loading, setLoading] = useState(true);
@@ -180,7 +181,28 @@ export default function PostPage() {
                   {/* the call to action */}
         <div className='max-w-7xl mx-auto w-full'>
             <CalltoAction/>
-            <CommentSection postId = {post._id}/>
+            {
+              currentUser ? (
+                <div className='flex items-center my-1 gap-2'>
+                  <p className='text-gray-400'>Signed in as: </p>
+                  <img
+                   className='h-5 w-5 object-cover rounded-full' src= {currentUser.avatar}
+                   alt={currentUser.name} />
+                </div>
+              ) : (
+                <div className='text-sm text-orange-500 my-5 flex gap-1'>
+                You must be signed in to view and make comment.
+                <Link to='/sign-in' className='font-semibold'>Sign-in</Link>
+                </div>
+              )
+            }
+
+            { currentUser && (
+
+              <CommentSection postId = {post._id}/>
+            )
+
+            }
         </div>
 
           <p className=' max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
