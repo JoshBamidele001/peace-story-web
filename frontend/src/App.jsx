@@ -27,12 +27,14 @@ import UpdatePost from './AdminOutlets/UpdatePost';
 import UsersDashboard from './AdminOutlets/UserProfile';
 import PostPage from './pages/PostPage';
 import ReadAPost from './pages/ReadAPost';
+import ScrollToTop from './Components/ScrollToTop';
 
 
 
 export default function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Navbar/>
       <Routes>
         <Route path='/' element= {<Home/>} />

@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Spinner from './Spinner';
+import {  useSelector } from 'react-redux'
+import CommentSection from './CommentSection';
 
 export default function ReadAPost() {
+  const { currentUser } = useSelector(state => state.user);
   const { postSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -61,6 +64,10 @@ export default function ReadAPost() {
     };
   }, []);
 
+  const handleSubmit = () =>{
+    
+  }
+
   if (loading) {
     return <Spinner />;
   }
@@ -75,8 +82,8 @@ export default function ReadAPost() {
 
   return (
     <main className="pt-24 mx-10 lg:mx-auto">
-      <div className="flex flex-col lg:flex-row relative">
-        <div className="lg:sticky lg:top-0">
+      <div className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] relative">
+        <div className="lg:sticky lg:top-0 p-5">
           <img src={post.image} className="p-3 w-96" alt={post.title} />
           <div>{post.title}</div>
           <div>{post.author}</div>
@@ -88,9 +95,9 @@ export default function ReadAPost() {
             dangerouslySetInnerHTML={{ __html: post.content }}
           ></div>
         </div>
-        <div>
-        <img src={post.image} className="p-3 w-96" alt={post.title} />
-        </div>
+
+        {/* Likes and comment section */}
+          <CommentSection postId = {post._id}/>
       </div>
     </main>
   );
