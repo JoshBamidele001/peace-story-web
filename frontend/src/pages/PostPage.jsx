@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react';
-import {  useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import Spinner from './Spinner';
 import CalltoAction from './CalltoAction';
 import CommentSection from './CommentSection';
 
+
 export default function PostPage() {
   const { currentUser } = useSelector(state => state.user);
   const { postSlug } = useParams();
-  // const {postGenre } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
-  const [similarStory, setsimilarStory] = useState([])
-  const [similarDrama, setsimilarDrama] = useState([])
-  const [similarPoetry, setsimilarPoetry] = useState([])
- 
- 
+  const [similarStory, setSimilarStory] = useState([]);
+  const [similarDrama, setSimilarDrama] = useState([]);
+  const [similarPoetry, setSimilarPoetry] = useState([]);
+  
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -44,6 +43,8 @@ export default function PostPage() {
     fetchPost();
   }, [postSlug]);
 
+
+
   useEffect(() => {
     const fetchGenre = async () => {
       try {
@@ -54,8 +55,9 @@ export default function PostPage() {
           setError(true);
           setLoading(false);
           return;
-        } if (Array.isArray(data.posts) && data.posts.length > 0){
-          setsimilarStory(data.posts)
+        }
+        if (Array.isArray(data.posts) && data.posts.length > 0) {
+          setSimilarStory(data.posts);
         } else {
           setError(true);
         }
@@ -66,9 +68,8 @@ export default function PostPage() {
       }
     };
 
-    fetchGenre();  
-   
-  }, [])
+    fetchGenre();
+  }, []);
 
   useEffect(() => {
     const fetchDrama = async () => {
@@ -80,8 +81,9 @@ export default function PostPage() {
           setError(true);
           setLoading(false);
           return;
-        } if (Array.isArray(data.posts) && data.posts.length > 0){
-          setsimilarDrama(data.posts)
+        }
+        if (Array.isArray(data.posts) && data.posts.length > 0) {
+          setSimilarDrama(data.posts);
         } else {
           setError(true);
         }
@@ -92,9 +94,8 @@ export default function PostPage() {
       }
     };
 
-    fetchDrama();  
-   
-  }, [])
+    fetchDrama();
+  }, []);
 
   useEffect(() => {
     const fetchPoetry = async () => {
@@ -106,8 +107,9 @@ export default function PostPage() {
           setError(true);
           setLoading(false);
           return;
-        } if (Array.isArray(data.posts) && data.posts.length > 0){
-          setsimilarPoetry(data.posts)
+        }
+        if (Array.isArray(data.posts) && data.posts.length > 0) {
+          setSimilarPoetry(data.posts);
         } else {
           setError(true);
         }
@@ -118,10 +120,8 @@ export default function PostPage() {
       }
     };
 
-    fetchPoetry();  
-   
-  }, [])
-  
+    fetchPoetry();
+  }, []);
 
   if (loading) {
     return <Spinner />;
@@ -136,148 +136,122 @@ export default function PostPage() {
   }
 
   return (
-    <main className="pt-24 ">
-     
-        <div className='h-80 border-b shadow-lg pb-5 shadow-slate-600 flex items-center justify-center self-center'>
-            <img src={post.image}
-            className='p-3 w-56 pb-5' alt={post.title} />
-            <div>
-                <div>{post.title}</div>
-                <div>{post.author}</div>
-            <p>{(post.content.length / 1000).toFixed(0)} mins</p>
-            <Link to={`/post/read/${postSlug}`}>
+    <main className="pt-24">
+      <div className='h-80 border-b shadow-lg pb-5 shadow-slate-600 flex items-center justify-center self-center'>
+        <img src={post.image} className='p-3 w-56 pb-5' alt={post.title} />
+        <div>
+          <div>{post.title}</div>
+          <div>{post.author}</div>
+          <p>{(post.content.length / 1000).toFixed(0)} mins</p>
+       
+          <Link to={`/post/read/${postSlug}`}>
             <p className='bg-black rounded-2xl btn text-white px-3 py-2'>Start Reading</p>
-            </Link>
-            </div>
+          </Link>
         </div>
+      </div>
 
-        <div className='max-w-5xl lg:mx-auto '>
-            <div className='py-5'>
-              <div className='text-xl font-semibold'>
-                  { post.genre === 'drama' ? (
-                    <p>Synopsis of Drama:</p>) :  ''           
-                  }
-                    { post.genre === 'prose' ? (
-                    <p>Synopsis, {post.title}:</p>) :  ''           
-                  }
-                  { post.genre === 'poetry' ? (
-                    <p>Biography of poet</p>) :  ''           
-                  }
-            </div>
-
-            <div className='text-justify'>
-                  <p>{post.synopsis} </p>              
-            </div>
-
-            </div>
-              {/* the right sidebar of the postSlug */}
-              <div className='py-5 text-justify'>
-              <p className='text-xl font-semibold'>Biography of the Author:</p>
-              <p>{post.biography}</p>
-                
-              </div>
-        
-        </div>
-                  {/* the call to action */}
-        <div className='max-w-7xl mx-auto w-full'>
-            <CalltoAction/>
-            {
-              currentUser ? (
-                <div className='flex items-center my-1 gap-2'>
-                  <p className='text-gray-400'>Signed in as: </p>
-                  <img
-                   className='h-5 w-5 object-cover rounded-full' src= {currentUser.avatar}
-                   alt={currentUser.name} />
-                </div>
-              ) : (
-                <div className='text-sm text-orange-500 my-5 flex gap-1'>
-                You must be signed in to view and make comment.
-                <Link to='/sign-in' className='font-semibold'>Sign-in</Link>
-                </div>
-              )
+      <div className='max-w-5xl lg:mx-auto'>
+        <div className='py-5'>
+          <div className='text-xl font-semibold'>
+            {post.genre === 'drama' ? (
+              <p>Synopsis of Drama:</p>) : ''
             }
-
-            { currentUser && (
-
-              <CommentSection postId = {post._id}/>
-            )
-
+            {post.genre === 'prose' ? (
+              <p>Synopsis, {post.title}:</p>) : ''
             }
+            {post.genre === 'poetry' ? (
+              <p>Biography of poet</p>) : ''
+            }
+          </div>
+
+          <div className='text-justify'>
+            <p>{post.synopsis} </p>
+          </div>
+
         </div>
+        {/* the right sidebar of the postSlug */}
+        <div className='py-5 text-justify'>
+          <p className='text-xl font-semibold'>Biography of the Author:</p>
+          <p>{post.biography}</p>
+        </div>
+      </div>
+      {/* the call to action */}
+      <div className='max-w-7xl mx-auto w-full'>
+        <CalltoAction />
+        {
+          currentUser ? (
+            <div className='flex items-center my-1 gap-2'>
+              <p className='text-gray-400'>Signed in as: </p>
+              <img
+                className='h-5 w-5 object-cover rounded-full' src={currentUser.avatar}
+                alt={currentUser.name} />
+            </div>
+          ) : (
+            <div className='text-sm text-orange-500 my-5 flex gap-1'>
+              You must be signed in to view and make comment.
+              <Link to='/sign-in' className='font-semibold'>Sign-in</Link>
+            </div>
+          )
+        }
 
-          <p className=' max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
+        {currentUser && (
+          <CommentSection postId={post._id} />
+        )}
+      </div>
 
-          {
-            post.genre === 'prose' ? (
+      <p className='max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
 
-     <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
-      { 
-        similarStory.map((posts) =>(
-          <Link to={`/post/${posts.slug}`} key={posts.slug}>
-         <div >
-           <img src={posts.image} 
-          className='w-72 h-72' alt={posts.title} />
-           <p>{posts.title}</p>
-           <p>Written by {posts.author}</p>
-
-           </div>
-          </Link>
-        )
-        
-        )
+      {
+        post.genre === 'prose' ? (
+          <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
+            {similarStory.map((posts) => (
+              <Link to={`/post/${posts.slug}`} key={posts.slug}>
+                <div>
+                  <img src={posts.image}
+                    className='w-72 h-72' alt={posts.title} />
+                  <p>{posts.title}</p>
+                  <p>Written by {posts.author}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : ''
       }
-     </div>
-            ) : ''
-          }
-     
-     {
-            post.genre === 'drama' ? (
 
-     <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
-      { 
-        similarDrama.map((posts) =>(
-          <Link to={`/post/${posts.slug}`} key={posts.slug}>
-         <div >
-           <img src={posts.image} 
-          className='w-72 h-72' alt={posts.title} />
-           <p>{posts.title}</p>
-           <p>Written by {posts.author}</p>
-
-           </div>
-          </Link>
-        )
-        
-        )
+      {
+        post.genre === 'drama' ? (
+          <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
+            {similarDrama.map((posts) => (
+              <Link to={`/post/${posts.slug}`} key={posts.slug}>
+                <div>
+                  <img src={posts.image}
+                    className='w-72 h-72' alt={posts.title} />
+                  <p>{posts.title}</p>
+                  <p>Written by {posts.author}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : ''
       }
-     </div>
-            ) : ''
-          }
-     
 
-     {
-            post.genre === 'poetry' ? (
-
-     <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
-      { 
-        similarPoetry.map((posts) =>(
-          <Link to={`/post/${posts.slug}`} key={posts.slug}>
-         <div >
-           <img src={posts.image} 
-          className='w-72 h-72' alt={posts.title} />
-           <p>{posts.title}</p>
-           <p>Written by {posts.author}</p>
-
-           </div>
-          </Link>
-        )
-        
-        )
+      {
+        post.genre === 'poetry' ? (
+          <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
+            {similarPoetry.map((posts) => (
+              <Link to={`/post/${posts.slug}`} key={posts.slug}>
+                <div>
+                  <img src={posts.image}
+                    className='w-72 h-72' alt={posts.title} />
+                  <p>{posts.title}</p>
+                  <p>Written by {posts.author}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : ''
       }
-     </div>
-            ) : ''
-          }
-      
-      
     </main>
-  );
+  )
+
 }

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Spinner from './Spinner';
 import {  useSelector } from 'react-redux'
 import CommentSection from './CommentSection';
+import { FaEye } from 'react-icons/fa';
 
 export default function ReadAPost() {
   const { currentUser } = useSelector(state => state.user);
@@ -10,6 +11,7 @@ export default function ReadAPost() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
+  const [views, setViews] = useState(0);
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -37,6 +39,46 @@ export default function ReadAPost() {
 
     fetchPost();
   }, [postSlug]);
+
+  // the function of fetch the number of views person click, which is yet to be resolved
+
+  useEffect(() => {
+    const fetchViews = async () => {
+      if (currentUser) {
+        try {
+          const res = await fetch(`/api/user/${currentUser._id}`);
+          const data = await res.json();
+          if (res.ok) {
+            setViews(data.views || 0);
+          }
+        } catch (error) {
+          console.error("Failed to fetch views:", error);
+        }
+      }
+    };
+
+    const incrementViews = async () => {
+      if (currentUser && post) {
+        try {
+          await fetch(`/api/user/${currentUser._id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ postId: post._id }),
+          });
+          setViews(views + 1);
+        } catch (error) {
+          console.error("Failed to increment views:", error);
+        }
+      }
+    };
+
+    fetchViews();
+    incrementViews();
+  }, [currentUser, post]);
+
+  // End of the fetchviews.....
 
   useEffect(() => {
     const savedPosition = localStorage.getItem('scroll-position');
@@ -83,12 +125,20 @@ export default function ReadAPost() {
   return (
     <main className="pt-24 mx-10 lg:mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-[20%_50%_30%] relative">
-        <div className="lg:sticky lg:top-0 p-5">
+        {/* The image of the story */}
+        <div className="lg:sticky lg:top-0 p-5 ">
           <img src={post.image} className="p-3 w-96" alt={post.title} />
           <div>{post.title}</div>
           <div>{post.author}</div>
           <p>{(post.content.length / 1000).toFixed(0)} mins</p>
+          {/* the eye icon for the numbers of views */}
+          <div className='flex items-center gap-2'>
+            <FaEye />
+            <span>{views} views</span>
+          </div>
         </div>
+
+        {/* The full post of the story */}
         <div ref={contentRef} className="overflow-y-auto h-full max-h-screen">
           <div
             className="p-3 max-w-3xl mx-auto text-justify post-content"
