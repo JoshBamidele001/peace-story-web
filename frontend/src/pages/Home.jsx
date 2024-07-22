@@ -13,7 +13,7 @@ export default function Home() {
            </div>           
         </div>
       </Bubbles>
-          <PostCard/>
+          
 
       </div>
   )

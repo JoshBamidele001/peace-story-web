@@ -4,6 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import Spinner from './Spinner';
 import CalltoAction from './CalltoAction';
 import CommentSection from './CommentSection';
+import PostCard from '../Components/PostCard'
+import AdvertCard from '../Components/AdvertCard'
 
 
 export default function PostPage() {
@@ -194,43 +196,49 @@ export default function PostPage() {
           )
         }
 
-        {currentUser && (
+        {/* {currentUser && (
           <CommentSection postId={post._id} />
-        )}
+        )} */}
       </div>
 
       <p className='max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
 
+        {/* the divi for the posts that are PROSE */}
+
       {
         post.genre === 'prose' ? (
-          <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
-            {similarStory.map((posts) => (
-              <Link to={`/post/${posts.slug}`} key={posts.slug}>
+          <div className='max-w-7xl mx-auto'>
+            <div className='flex'>
                 <div>
-                  <img src={posts.image}
-                    className='w-72 h-72' alt={posts.title} />
-                  <p>{posts.title}</p>
-                  <p>Written by {posts.author}</p>
+                    <div className='flex flex-wrap max-w-4xl lg:mx-auto  gap-5'>
+                      { similarStory && similarStory.map((post) => (
+                          <PostCard key={post._id} post={post}/>
+                      ))}
+                    </div>
                 </div>
-              </Link>
-            ))}
+
+                <div className='flex flex-col gap-5'>
+                    <AdvertCard/>
+                    <AdvertCard/>
+                </div>
+            </div>
           </div>
         ) : ''
       }
 
       {
         post.genre === 'drama' ? (
-          <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
-            {similarDrama.map((posts) => (
-              <Link to={`/post/${posts.slug}`} key={posts.slug}>
-                <div>
-                  <img src={posts.image}
-                    className='w-72 h-72' alt={posts.title} />
-                  <p>{posts.title}</p>
-                  <p>Written by {posts.author}</p>
-                </div>
-              </Link>
-            ))}
+          <div className=' flex'>
+            <div>
+              <div className='flex flex-wrap max-w-5xl lg:mx-auto  gap-5'>
+                {similarDrama && similarDrama.map((post) => (
+                  <PostCard key={post._id} post={post}/>
+                ))}
+              </div>
+            </div>
+            <div>
+              <AdvertCard/>
+            </div>
           </div>
         ) : ''
       }
@@ -238,15 +246,8 @@ export default function PostPage() {
       {
         post.genre === 'poetry' ? (
           <div className='grid grid-cols-1 max-w-5xl lg:mx-auto lg:grid-cols-4 gap-5'>
-            {similarPoetry.map((posts) => (
-              <Link to={`/post/${posts.slug}`} key={posts.slug}>
-                <div>
-                  <img src={posts.image}
-                    className='w-72 h-72' alt={posts.title} />
-                  <p>{posts.title}</p>
-                  <p>Written by {posts.author}</p>
-                </div>
-              </Link>
+            {similarPoetry && similarPoetry.map((post) => (
+                <PostCard key={post._id} post={post}/>
             ))}
           </div>
         ) : ''
