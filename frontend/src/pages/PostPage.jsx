@@ -201,12 +201,14 @@ export default function PostPage() {
         )} */}
       </div>
 
-      <p className='max-w-5xl lg:mx-auto py-5 text-2xl font-semibold'>Similar contents you would like</p>
 
         {/* the divi for the posts that are PROSE */}
 
       {
         post.genre === 'prose' ? (
+          <>
+          <p className='max-w-6xl lg:mx-auto py-5 text-2xl font-semibold'>Similar {post.genre} you would like:</p>
+
           <div className='max-w-7xl mx-auto'>
             <div className='flex'>
                 <div>
@@ -218,11 +220,30 @@ export default function PostPage() {
                 </div>
 
                 <div className='flex flex-col gap-5'>
-                    <AdvertCard/>
-                    <AdvertCard/>
+                    <AdvertCard
+                      rating="4.8"
+                      title="Our Ads: Share with Us"
+                      imageUrl="https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/call%20to%20action%20and%20other%20images%2FWriting%20card%201.jpg?alt=media&token=41741a8f-b602-40fe-80ba-da6e0876c717"
+                      level="Submit With Us"
+                      description="Share your godly and moral stories to inspire others. Your wisdom and positivity can uplift many! PROMO ENDS SEPT 2ND"
+                      instructorImageUrl="https://tinyurl.com/dphospens"
+                      instructorName="dphosPENS Editors"
+                      price="0"
+                      />
+                    <AdvertCard
+                      rating="4.8"
+                      title="We can help your write"
+                      imageUrl="https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/call%20to%20action%20and%20other%20images%2Fwriting%20card%202.jpg?alt=media&token=5f31f956-c239-4a58-a06a-ff16e25148f9"
+                      level="Drop your synopsis"
+                      description="Let us help you write your godly and moral stories. Share your experiences, and we'll bring your wisdom to life. "
+                      instructorImageUrl="https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/call%20to%20action%20and%20other%20images%2Fwriting%20card%202.jpg?alt=media&token=5f31f956-c239-4a58-a06a-ff16e25148f9"
+                      instructorName="dphosPENS Writers"
+                      price="20"
+                    />
                 </div>
             </div>
           </div>
+          </>
         ) : ''
       }
 

@@ -51,25 +51,25 @@ export default function App() {
               <Route path='/dashboard' element={<Dashboard/>}> 
                   
                   <Route path='/dashboard' element={<AllProfile/>} />
-                  <Route path='/dashboard/edit_profile' element={<EditProfile/>} />
-                  <Route path='/dashboard/my_library' element={<MyLibrary/>} />
-                  <Route path='/dashboard/add_book_listing' element={<AddBookListing/>} />
-                  <Route path='/dashboard/saved_books' element={<SavedBooks/>} />        
+                  <Route path='/dashboard/edit-profile' element={<EditProfile/>} />
+                  <Route path='/dashboard/my-library' element={<MyLibrary/>} />
+                  <Route path='/dashboard/add-book-listing' element={<AddBookListing/>} />
+                  <Route path='/dashboard/saved-books' element={<SavedBooks/>} />        
                     
 
               </Route>
           </Route>
 
           <Route element={<OnlyAdminPrivateRoutes/>}>
-          <Route path='/ad_min' element={<Admin/>}>
-              <Route path='/ad_min' element={<DashboardSummary/>} />
-              <Route path='/ad_min/create_post' element={<CreateAStory/>} />
-              <Route path='/ad_min/all_posts' element={<AllPosts/>} />
-              <Route path='/ad_min/user_profile' element={<UsersDashboard/>} />
-              <Route path='/ad_min/setting' element={<Setting/>} />
-              <Route path='/ad_min/error' element={<Error404/>} />
-              <Route path='/ad_min/table_list' element={<Table/>} />
-              <Route path='/ad_min/update-post/:postId' element={<UpdatePost/>} />
+          <Route path='/admin' element={<Admin/>}>
+              <Route path='/admin' element={<DashboardSummary/>} />
+              <Route path='/admin/create-post' element={<CreateAStory/>} />
+              <Route path='/admin/all-posts' element={<AllPosts/>} />
+              <Route path='/admin/user-profile' element={<UsersDashboard/>} />
+              <Route path='/admin/setting' element={<Setting/>} />
+              <Route path='/admin/error' element={<Error404/>} />
+              <Route path='/admin/all-comments' element={<Table/>} />
+              <Route path='/admin/update-post/:postId' element={<UpdatePost/>} />
           </Route> 
              
           </Route>

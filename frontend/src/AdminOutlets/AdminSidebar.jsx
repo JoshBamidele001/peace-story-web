@@ -67,28 +67,28 @@ export default function AdminSidebar() {
 
         <ul className='  leading-2 text-semibold'>
 
-            <Link to='/ad_min'>
+            <Link to='/admin'>
            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <MdDashboard /> Dashboard</li>
             </Link>
 
-            <Link to='/ad_min/user_profile'>
+            <Link to='/admin/user-profile'>
               <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> All Users</li>
             </Link>
            
 
-            <Link to='/ad_min/create_post'>
+            <Link to='/admin/create-post'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />Create a story</li>
             </Link>
-            <Link to='/ad_min/all_posts'>
+            <Link to='/admin/all-posts'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />All Posts</li>
             </Link>
-            <Link to='/ad_min/table_list'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Table List</li>
+            <Link to='/admin/table-list'>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Comments</li>
             </Link>
-            <Link to='/ad_min/setting'>
+            <Link to='/admin/setting'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Setting</li>
             </Link>
-            <Link to='/ad_min/error'>
+            <Link to='/admin/error'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Error 404</li>
             </Link>
             <li onClick={handleLogoutClick} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
