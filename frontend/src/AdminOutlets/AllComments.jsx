@@ -12,7 +12,7 @@ export default function AllComments() {
   const [commentIdToDelete, setcommentIdToDelete] = useState('')
   const [isModalOpen, setModalOpen] = useState(false);
   console.log(comments);
-  
+
   useEffect(() => {
    const fetchComments = async () => {
     try {
@@ -118,9 +118,14 @@ export default function AllComments() {
                          
                           {comments.numberOfLikes}</td>
 
-                          <td className=" px-4 py-3  my-5" >{comments.postId}</td>
+                          <td className=" px-4 py-3  my-5" >{comments.postId}
+
+                          </td>
+                          {/* here to use conditional state to equate the userId = current._id then post currentuser.name */}
                           <td className=" px-4 py-3  my-5" >
-                            {comments.userId}</td>
+                            {
+                            comments.userId === currentUser._id ? (<p>{currentUser.name}</p>) : (<p>nfgmrmgtm</p>) 
+                            }</td>
                           <td className=" px-4 py-3  my-5" >                        
                             <button className='text-red-500 font-semibold hover:underline'
                              onClick={()=> {
