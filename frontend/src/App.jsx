@@ -21,7 +21,7 @@ import DashboardSummary from './AdminOutlets/DashboardSummary';
 import AllPosts from './AdminOutlets/AllPosts';
 import Setting from './AdminOutlets/Setting';
 import Error404 from './AdminOutlets/Error404';
-import Table from './AdminOutlets/Table';
+import Table from './AdminOutlets/AllComments';
 import CreateAStory from './AdminOutlets/CreateAStory';
 import UpdatePost from './AdminOutlets/UpdatePost';
 import UsersDashboard from './AdminOutlets/UserProfile';
@@ -38,7 +38,7 @@ export default function App() {
       <Navbar/>
       <Routes>
         <Route path='/' element= {<Home/>} />
-        <Route path='/about_us' element= {<About/>} />
+        <Route path='/about-us' element= {<About/>} />
         <Route path='/read' element= {<Read/>} />
         <Route path='/sign-up' element= {<SignUp/>} />
         <Route path='/sign-in' element= {<SignIn/>} />

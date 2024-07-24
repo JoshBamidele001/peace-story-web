@@ -82,7 +82,7 @@ export default function AdminSidebar() {
             <Link to='/admin/all-posts'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />All Posts</li>
             </Link>
-            <Link to='/admin/table-list'>
+            <Link to='/admin/all-comments'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Comments</li>
             </Link>
             <Link to='/admin/setting'>

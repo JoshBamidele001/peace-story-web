@@ -30,12 +30,12 @@ export default function Navbar() {
             <Link to='/lets-write-for-you'>
             <li>Let's help you write</li>
             </Link>
-            <Link to='/about_us'>
+            <Link to='/about-us'>
             <li>About us</li>
             </Link>
             {
               currentUser && currentUser.isAdmin && (
-            <Link to='/ad_min'>
+            <Link to='/admin'>
             <li>Admin</li>
             </Link>
               )
