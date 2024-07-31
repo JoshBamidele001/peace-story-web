@@ -6,6 +6,11 @@ import { FaSwatchbook, FaEdit, FaAddressBook, FaSave  } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { IoLibrary, IoLogOut  } from "react-icons/io5";
 import { logoutUserFailure, logoutUserStart, logoutUserSuccess } from '../redux/user/userSlice';
+import { HiMiniUserGroup } from "react-icons/hi2";
+import { IoDocumentTextOutline } from "react-icons/io5";
+import { MdOutlineInsertComment } from "react-icons/md";
+import { IoMdSettings } from "react-icons/io";
+import { MdOutlineReportGmailerrorred } from "react-icons/md";
 
 
 export default function AdminSidebar() {
@@ -72,24 +77,24 @@ export default function AdminSidebar() {
             </Link>
 
             <Link to='/admin/user-profile'>
-              <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> All Users</li>
+              <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><HiMiniUserGroup /> All Users</li>
             </Link>
            
 
             <Link to='/admin/create-post'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />Create a story</li>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaEdit />Create a story</li>
             </Link>
             <Link to='/admin/all-posts'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />All Posts</li>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoDocumentTextOutline />All Posts</li>
             </Link>
             <Link to='/admin/all-comments'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Comments</li>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><MdOutlineInsertComment/> Comments</li>
             </Link>
             <Link to='/admin/setting'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Setting</li>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoMdSettings /> Setting</li>
             </Link>
             <Link to='/admin/error'>
-            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Error 404</li>
+            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><MdOutlineReportGmailerrorred /> Error 404</li>
             </Link>
             <li onClick={handleLogoutClick} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
         </ul>

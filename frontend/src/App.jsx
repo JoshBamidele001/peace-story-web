@@ -28,6 +28,7 @@ import UsersDashboard from './AdminOutlets/UserProfile';
 import PostPage from './pages/PostPage';
 import ReadAPost from './pages/ReadAPost';
 import ScrollToTop from './Components/ScrollToTop';
+import AdminDashboard from './AdminOutlets/AdminDashboard';
 
 
 
@@ -62,7 +63,7 @@ export default function App() {
 
           <Route element={<OnlyAdminPrivateRoutes/>}>
           <Route path='/admin' element={<Admin/>}>
-              <Route path='/admin' element={<DashboardSummary/>} />
+              <Route path='/admin' element={<AdminDashboard/>} />
               <Route path='/admin/create-post' element={<CreateAStory/>} />
               <Route path='/admin/all-posts' element={<AllPosts/>} />
               <Route path='/admin/user-profile' element={<UsersDashboard/>} />

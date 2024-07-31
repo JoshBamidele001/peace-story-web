@@ -99,7 +99,7 @@ export default function AllPosts() {
 
           <table class="min-w-full bg-white border border-gray-200">
                 <thead>
-                    <tr>
+                    <tr >
                         <th class="py-3 px-4 bg-gray-200 text-left">Date Posted</th>
                         <th class="py-3 px-4 bg-gray-200 text-left">Post Image</th>
                         <th class="py-3 px-4 bg-gray-200 text-left">Post Title</th>
@@ -110,7 +110,7 @@ export default function AllPosts() {
                 </thead>
                 {userPosts.map((post)=> (
                   <tbody>
-                      <tr>
+                      <tr className="hover:bg-gray-200 transition-all">
                           <td className="border px-4 py-3">{new Date (post.updatedAt).toLocaleDateString()}</td>
                          <Link to={`/post/${post.slug}`}>
                           <td className='flex items-center justify-center'> <img src={post.image} alt={post.title}

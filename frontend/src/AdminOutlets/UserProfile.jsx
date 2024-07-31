@@ -93,7 +93,7 @@ export default function UsersDashboard() {
 
           <table class="min-w-full bg-white border border-gray-200">
                 <thead>
-                    <tr>
+                    <tr >
                         <th class="py-3 px-4 bg-gray-200 text-left">Date Created</th>
                         <th class="py-3 px-4 bg-gray-200 text-left">User Image</th>
                         <th class="py-3 px-4 bg-gray-200 text-left">Name</th>
@@ -104,7 +104,7 @@ export default function UsersDashboard() {
                 </thead>
                 {users.map((users)=> (
                   <tbody>
-                      <tr className=''>
+                      <tr className='hover:bg-gray-200 transition-all'>
                           <td className=" px-4 py-3 my-5 ">{new Date (users.createdAt).toLocaleDateString()}</td>
 
                         

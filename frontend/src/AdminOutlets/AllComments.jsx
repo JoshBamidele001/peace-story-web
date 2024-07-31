@@ -147,11 +147,11 @@ export default function AllComments() {
                 </thead>
                 {comments.map((comments)=> (
                   <tbody>
-                      <tr className=''>
+                      <tr className=' hover:bg-gray-200 transition-all'>
                           <td className=" px-4 py-3 my-5 ">{new Date (comments.updatedAt).toLocaleDateString()}</td>
 
                         
-                          <td className=' flex  items-center justify-center  my-5'> 
+                          <td className=' flex  items-center justify-center w-72 text-justify  my-5'> 
                             {comments.content}
                            </td>
                        
