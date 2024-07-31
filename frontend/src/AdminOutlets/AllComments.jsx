@@ -8,10 +8,14 @@ import { FaCheck } from "react-icons/fa";
 export default function AllComments() {
   const { currentUser } = useSelector((state)=> state.user)
   const [comments, setcomments] = useState([])
+  const [userPosts, setuserPosts] = useState([])
+    const [users, setusers] = useState([])
   const [showMore, setshowMore] = useState(true) 
   const [commentIdToDelete, setcommentIdToDelete] = useState('')
   const [isModalOpen, setModalOpen] = useState(false);
-  console.log(comments);
+  console.log(users);
+  const forPostTitle = userPosts && userPosts.post ? userPosts.post : null;
+  const forUser = users && users.users ? users.users : null
 
   useEffect(() => {
    const fetchComments = async () => {
@@ -30,8 +34,46 @@ export default function AllComments() {
    };
 
    fetchComments()
+   
     
   }, [currentUser._id])
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+     try {
+       const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`)
+       const data = await res.json()
+       if(res.ok){
+         setloading(false)
+         setuserPosts(data.posts);
+       }
+     } catch (error) {
+       console.log(error.message);
+     } 
+    };
+ 
+    fetchPosts()
+     
+   }, [currentUser._id])
+
+
+   useEffect(() => {
+    const fetchUsers = async () => {
+     try {
+       const res = await fetch(`/api/user/getusers`)
+       const data = await res.json()
+       if(res.ok){
+         setusers(data.users);
+       }
+     } catch (error) {
+       console.log(error.message);
+     } 
+    };
+ 
+    fetchUsers()
+     
+   }, [currentUser._id])
+
 
   const handleShowMore = async () =>{
     const startIndex = comments.length;
@@ -54,7 +96,7 @@ export default function AllComments() {
   const confirmDelete = async () => {
     setModalOpen(false);
     try {
-      const res = await fetch(`/api/comment/delete/${commentIdToDelete}`,
+      const res = await fetch(`/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
         }
@@ -118,13 +160,18 @@ export default function AllComments() {
                          
                           {comments.numberOfLikes}</td>
 
-                          <td className=" px-4 py-3  my-5" >{comments.postId}
+                          <td className=" px-4 py-3  my-5" >
+                            {
+                            comments.postId 
+                            // === forPostTitle._id ? (<p>{forPostTitle.title}</p>) : (<p>Deleted User</p>) 
+                            }
 
                           </td>
                           {/* here to use conditional state to equate the userId = current._id then post currentuser.name */}
                           <td className=" px-4 py-3  my-5" >
                             {
-                            comments.userId === currentUser._id ? (<p>{currentUser.name}</p>) : (<p>nfgmrmgtm</p>) 
+                            comments.userId 
+                            // === forUser._id ? (<p>{forUser.name}</p>) : (<p>Anonymous</p>) 
                             }</td>
                           <td className=" px-4 py-3  my-5" >                        
                             <button className='text-red-500 font-semibold hover:underline'
