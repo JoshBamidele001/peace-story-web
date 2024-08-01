@@ -51,7 +51,7 @@ body {
   width: 40px;
   height: 40px;
   /* background-color: rgba(255, 255, 255, 0.3); */
-  background-color: rgb(238,209,208);
+  background-color: #4B0082;
   border-radius: 50%;
   animation: bubble 20s linear infinite;
 }

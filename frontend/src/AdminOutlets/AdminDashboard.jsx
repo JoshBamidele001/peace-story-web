@@ -150,7 +150,7 @@ export default function AdminDashboard() {
           <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md'>
               <div className='flex justify-between mb-4 border-b-2 text-sm font-semibold'>
                 <h1 className='text-center text-lg'>Recent users</h1>
-                <button className='bg-teal-500 px-3 py-1 rounded hover:bg-transparent hover:border-green-900 hover:border-2'>
+                <button className='bg-teal-500 text-white px-3 py-1 rounded hover:bg-transparent hover:border-green-900 hover:border-2'>
                   <Link to={'/admin/user-profile'}>
                   See All
                   </Link>
@@ -184,7 +184,7 @@ export default function AdminDashboard() {
           <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md'>
               <div className='flex justify-between mb-4  border-b-2 text-sm font-semibold'>
                 <h1 className='text-center text-lg'>Recent Comments</h1>
-                <button className='bg-blue-500 px-3  rounded hover:bg-transparent hover:border-green-900 hover:border-2'>
+                <button className='bg-blue-500 text-white px-3  rounded hover:bg-transparent hover:border-green-900 hover:border-2'>
                   <Link to={'/admin/all-comments'}>
                   See All
                   </Link>
@@ -218,7 +218,7 @@ export default function AdminDashboard() {
           <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md'>
               <div className='flex justify-between mb-4 border-b-2 text-sm font-semibold'>
                 <h1 className='text-center text-lg'>Recent posts</h1>
-                <button className='bg-red-500 px-3  rounded hover:bg-transparent hover:border-green-900 hover:border-2'>
+                <button className='bg-red-500 text-white px-3  rounded hover:bg-transparent hover:border-green-900 hover:border-2'>
                   <Link to={'/admin/all-posts'}>
                   See All
                   </Link>

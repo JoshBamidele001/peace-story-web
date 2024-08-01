@@ -15,9 +15,9 @@ export default function Navbar() {
 
   return (
     <>
-    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg fixed bg-white z-10 '>
+    <div className=' w-screen h-24 first-letter: flex items-center justify-around shadow-lg fixed bg-white z-10 ' style={{ background: "linear-gradient(to left, #d251ee, #000000)"}} >
                 
-       <ul className=' hidden md:flex lg:flex gap-12'>
+       <ul className=' hidden md:flex lg:flex gap-12 text-white font-semibold'>
             <Link to='/'>
             <li>Home</li>
             </Link>
@@ -25,10 +25,10 @@ export default function Navbar() {
             <li>Read</li>
             </Link>
             <Link to='/publish'>
-            <li>Publish a story</li>
+            <li>Submit a story</li>
             </Link>
             <Link to='/lets-write-for-you'>
-            <li>Let's help you write</li>
+            <li>Let's write for you</li>
             </Link>
             <Link to='/about-us'>
             <li>About us</li>
@@ -46,8 +46,8 @@ export default function Navbar() {
         
         <Link to='/'>
         <div className='flex items-center gap-2'>
-        <p className='text-xl'><FaSwatchbook /></p>
-        <p className='text-base md:text-2xl lg:text-3xl font-semibold'> dphosPENS</p>
+        <p className='text-xl text-purple-600'><FaSwatchbook /></p>
+        <p className='text-base md:text-2xl lg:text-3xl font-semibold text-white'> dphos<span className='text-purple-300'>PENS</span></p>
         </div>
         </Link>
        
@@ -55,10 +55,10 @@ export default function Navbar() {
         {currentUser ? (
                             <Link to={'/dashboard'}>
                             <div className='md:flex items-center gap-2 hidden '>
-                              <div><img src={currentUser.avatar}alt="Profile picture" className='w-12 rounded-full' /></div>
+                              <div><img src={currentUser.avatar} alt="Profile picture" className='w-12 rounded-full' /></div>
                                <div className='flex flex-col'>
-                               <span className='text-sm'>Hi, {currentUser.name} </span>
-                               <span className='text-lg'> Dashboard</span>
+                               <span className='text-sm text-white'>Hi, {currentUser.name}. </span>
+                               <span className='text-lg text-purple-200'> Dashboard</span>
                                </div>
                             </div>
                             </Link>
@@ -66,8 +66,8 @@ export default function Navbar() {
                        
                 <Link to='/sign-up'>
                 <div>
-                      <p className='text-base hidden md:inline-block lg:inline-block btn bg-transparent 
-                      md:py-2 md:px-3 border-2 border-black rounded-xl '>Signup/Signin</p>
+                      <p className='text-base hidden md:inline-block lg:inline-block btn bg-white text-purple-900 
+                      md:py-2 md:px-3 border-2 border-purple rounded-xl hover:bg-purple-950 transition ease-in font-semibold hover:text-white'>Signup/Signin</p>
                 </div>
                 </Link>
                         ) }

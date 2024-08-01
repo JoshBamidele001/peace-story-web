@@ -88,16 +88,16 @@ const handleSubmit = async (e)=>{
   return (
     <section className='w-screen relative  '>
 
-  <div className="h-screen  flex justify-center items-center" style={{ background: "linear-gradient(to left, #0066ff, #ff0000)"}}>
-    <div className="w-full max-w-md p-4 bg-white rounded-xl shadow-md">
+  <div className="h-screen  flex justify-center items-center" style={{ background: "linear-gradient(to left, #d251ee, #000000)"}}>
+    <div className="w-full max-w-md p-4 bg-white rounded-xl shadow-md ">
 
         <Link to='/'>
-              <div className='flex flex-col items-center justify-center gap-2 mt-10 mb-5 '>
+              <div className='flex flex-col items-center justify-center gap-2 mt-10 mb-5  '>
               <div className='flex items-center justify-center gap-2'>
               <p className='text-xl'><FaSwatchbook /></p>
-              <p className='text-base md:text-2xl lg:text-3xl font-semibold'> dphosPENS</p>
+              <p className='text-base md:text-2xl lg:text-3xl font-semibold text-purple-800'> dphosPENS</p>
               </div>
-              <small>...lets help you bring out your story</small>
+              <small className='text-purple-900'>...lets help you bring out your story</small>
               </div>
         </Link>
         <hr />
@@ -151,7 +151,7 @@ const handleSubmit = async (e)=>{
               
               
               <button
-              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}} disabled={loading} >Sign Up</button>
+              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #000000,  #d251ee)"}} disabled={loading} >Sign Up</button>
           
         <OAuth/>
           
