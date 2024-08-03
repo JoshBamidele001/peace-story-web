@@ -70,7 +70,7 @@ export default function AdminDashboard() {
 
   return (
     <div>
-       <div className='bg-[rgb(19,30,61)] h-32 text-gray-200 flex items-center justify-center flex-col'>
+       <div className='bg-[rgb(19,30,61)] h-32 text-gray-200 flex items-center justify-center flex-col' style={{ background: "linear-gradient(to right,  #000000, #d251ee)"}}>
             <p className=' text-lg'>ADMIN Dashboard</p>
             <small>HOME - ADMIN - DASHBOARD</small>
       </div>
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
           md:w-72 w-full rounded-md shadow-md'>
             <div className='flex justify-between'>
                 <div>
-                    <h3 className='text-2xl text-gray-500 text-md uppercase'>Total Users</h3>
+                    <h3 className='text-2xl text-purple-900 font-semibold text-md uppercase'>Total Users</h3>
                     <p className='text-2xl '>{totalUsers}</p>
                 </div>
                     <FaUserGroup className='bg-teal-600 text-white rounded-full text-5xl p-3 shadow-lg' />

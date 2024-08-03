@@ -6,38 +6,38 @@ export default function Packages() {
   return (
     <>
       {/* the searcjh button of the books */}
-      <input type="text" placeholder='Search a book' className='py-1 px-10 w-96 rounded-lg border-8' />
+      <input type="text" placeholder='Search a book' className='py-1 px-10 w-96 rounded-lg border-8 border-purple-800' />
 
       {/* Welcome user note */}
       <div>
-        <p className='lg:text-5xl p-3'>Welcome, {currentUser.name}</p>
+        <p className='lg:text-5xl p-3 text-purple-800'>Welcome, {currentUser.name}</p>
         <p className='p-3 '> Here is a summary of your activities, and invovlement on your reading pace</p>
        
       </div>
 
       {/* button for the explore */}
 
-      <button className='bg-slate-800 text-white px-5 py-2 rounded-lg m-3'>Explore Books</button>
+      <button className='bg-purple-800 text-white px-5 py-2 rounded-lg m-3'>Explore Books</button>
 
       {/* this is the counter on the profile */}
-      <div className='mt-5 flex gap-8 mb-10 '>
-          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200'>
-            <p className='p-5 text-lg '>Total Books Read:</p>
+      <div className='mt-5 flex gap-8 mb-10 text-white '>
+          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200' style={{ background: "linear-gradient(to top,  #000000, #d251ee)"}}>
+            <p className='p-5 text-lg font-semibold '>Total Books Read:</p>
             <p className='text-6xl  p-5 font-semibold'>0</p>
           </div>
 
-          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200'>
-            <p className='p-5 text-lg '>Total Books Listed:</p>
+          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200' style={{ background: "linear-gradient(to top,  #000000, #d251ee)"}}>
+            <p className='p-5 text-lg font-semibold '>Total Books Listed:</p>
             <p className='text-6xl  p-5 font-semibold'>0</p>
           </div>
 
-          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200'>
-            <p className='p-5 text-lg text-nowrap '>Saved Books:</p>
+          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200' style={{ background: "linear-gradient(to top,  #000000, #d251ee)"}}>
+            <p className='p-5 text-lg text-nowrap font-semibold '>Saved Books:</p>
             <p className='text-6xl  p-5 font-semibold'>20</p>
           </div>
 
-          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200'>
-            <p className='p-5 text-lg text-nowrap '>Books in my Library:</p>
+          <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200' style={{ background: "linear-gradient(to top,  #000000, #d251ee)"}}>
+            <p className='p-5 text-lg text-nowrap font-semibold '>Books in my Library:</p>
             <p className='text-6xl  p-5 font-semibold'>20</p>
           </div>
       </div>

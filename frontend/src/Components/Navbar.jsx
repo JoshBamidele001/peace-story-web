@@ -46,7 +46,7 @@ export default function Navbar() {
         
         <Link to='/'>
         <div className='flex items-center gap-2'>
-        <p className='text-xl text-purple-600'><FaSwatchbook /></p>
+        <p className='text-xl text-white'><FaSwatchbook /></p>
         <p className='text-base md:text-2xl lg:text-3xl font-semibold text-white'> dphos<span className='text-purple-300'>PENS</span></p>
         </div>
         </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
                               <div><img src={currentUser.avatar} alt="Profile picture" className='w-12 rounded-full' /></div>
                                <div className='flex flex-col'>
                                <span className='text-sm text-white'>Hi, {currentUser.name}. </span>
-                               <span className='text-lg text-purple-200'> Dashboard</span>
+                               <span className='text-lg text-white font-semibold'> Dashboard</span>
                                </div>
                             </div>
                             </Link>
