@@ -9,6 +9,7 @@ import AdvertCard from '../Components/AdvertCard'
 import { Link } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import PostOnHome from '../Components/Home Page Components/PostOnHome';
+import Testimonials from '../Components/Testimonials'
 
 export default function Home() {
   return (
@@ -95,6 +96,8 @@ export default function Home() {
                       price="20"
                     />
               </div>
+
+              <Testimonials/>
 
       </div>
   )
