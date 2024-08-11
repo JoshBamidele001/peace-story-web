@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Bubbles from '../Components/Bubbles'
 import Land1 from '../Components/Home Page Components/Land1'
 import Land2 from '../Components/Home Page Components/Land2'
@@ -6,7 +6,7 @@ import Land3 from '../Components/Home Page Components/Land3'
 import { FaSwatchbook } from "react-icons/fa";
 import Carousel from '../Components/Carousel'
 import AdvertCard from '../Components/AdvertCard'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import PostOnHome from '../Components/Home Page Components/PostOnHome';
 import Testimonials from '../Components/Testimonials'
@@ -16,6 +16,19 @@ import Poetry from '../Genre and Categories/Poetry'
 import DphosOriginalsAdvert from '../Components/Home Page Components/DphosOriginalsAdvert'
 
 export default function Home() {
+  const [searchTerm, setsearchTerm] = useState('')
+  const location = useLocation(); 
+  // const navigate = useNavigate()
+  console.log(searchTerm);
+  
+  useEffect(() => {
+     const urlParams = new URLSearchParams(location.search);
+     const searchTermFromUrl = urlParams.get('searchTerm');
+   if (searchTermFromUrl) {
+    setsearchTerm(searchTermFromUrl)
+   }
+  }, [location.search])
+  
   return (
     <div className='py-20 lg:py-16 w-full bg-purple-100' >
               
@@ -57,7 +70,8 @@ export default function Home() {
      <p className='text-white py-5 px-5 text-2xl'>Search for any stories, poems and drama, we've got you covered</p>
        <div className='relative'>
          <input type="text" placeholder='Search anything'
-       className='px-3 p-1 m-5 rounded-xl w-4/5'/>
+       className='px-3 p-1 m-5 rounded-xl w-4/5'
+       value={searchTerm}/>
        <FaSearch className='absolute top-6  text-purple-900 right-16 text-xl' />
          </div>
          
@@ -96,6 +110,7 @@ export default function Home() {
               <Land3/>
                 <p className='text-2xl md:text-3xl lg:text-3xl text-purple-900 px-16 py-5 font-semibold'>Top stories:</p>
               <div className='flex justify-center items-start gap-10'>
+                {/* Top Stories  */}
               <PostOnHome/>
               <AdvertCard
                       rating="4.8"

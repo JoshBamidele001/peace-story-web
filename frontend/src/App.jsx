@@ -29,6 +29,7 @@ import PostPage from './pages/PostPage';
 import ReadAPost from './pages/ReadAPost';
 import ScrollToTop from './Components/ScrollToTop';
 import AdminDashboard from './AdminOutlets/AdminDashboard';
+import Search from './Components/Search';
 
 
 
@@ -43,6 +44,7 @@ export default function App() {
         <Route path='/read' element= {<Read/>} />
         <Route path='/sign-up' element= {<SignUp/>} />
         <Route path='/sign-in' element= {<SignIn/>} />
+        <Route path='/search' element= {<Search/>} />
         <Route path='/publish' element= {<Publish/>} />
         <Route path='/lets-write-for-you' element= {<WriteForYou/>} />
         <Route path='/post/:postSlug' element= {<PostPage/>} />
