@@ -27,7 +27,7 @@ export default function About() {
                </div>
           
                 <div className='mx-10  md:mx-0 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-70'> 
-                    <p className='lg:text-3xl text-sm md:text-xl font-semibold'>PEACE JOSHUA BAMIDELE</p>
+                    <p className='lg:text-3xl text-sm md:text-xl font-semibold'>VISION</p>
                     <p className='font-semibold'>-FOUNDER</p>
                     <p className='text-justify lg:my-5 text-sm md:text-base  w-5/6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic suscipit porro, sint, corporis perspiciatis consectetur consequuntur odio autem minima laborum enim praesentium sequi cumque reprehenderit incidunt assumenda dolor numquam, quibusdam laboriosam iure modi optio ullam odit. Libero quasi minus, labore voluptate ratione accusantium culpa perferendis deserunt est laudantium asperiores delectus laboriosam, ullam numquam consequuntur nulla dolore voluptatem repellendus amet obcaecati inventore nostrum non velit? Tempora, est quibusdam minima totam iure nobis explicabo facere rerum cumque aperiam, omnis debitis voluptate modi ipsa deleniti obcaecati odio minus dicta quas quaerat nulla unde architecto? Amet, similique. Illo, vel? Minus dolore commodi dolorem ipsum.</p>
                     <p className='lg:my-5 text-justify text-sm md:text-base w-5/6'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat eos dolorem delectus sint sequi eius. Earum, possimus! Quia cupiditate atque quod sequi quos deleniti beatae at! Consectetur recusandae sapiente neque.</p>
@@ -45,7 +45,7 @@ export default function About() {
            <div className=' text-white md:mx-3 lg:mx-20 flex flex-col-reverse md:flex-row md:items-start lg:flex-row justify-around my-5 lg:my-10   '>
                       
                 <div className='  transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-70'> 
-                    <p className='lg:text-3xl font-semibold'>JOSHUA BAMIDELE</p>
+                    <p className='lg:text-3xl font-semibold'>MISSION</p>
                     <p className='font-semibold'>-C.T.O</p>
                     <p className='text-justify lg:my-5 text-sm md:text-base w-5/6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic suscipit porro, sint, corporis perspiciatis consectetur consequuntur odio autem minima laborum enim praesentium sequi cumque reprehenderit incidunt assumenda dolor numquam, quibusdam laboriosam iure modi optio ullam odit. Libero quasi minus, labore voluptate ratione accusantium culpa perferendis deserunt est laudantium asperiores delectus laboriosam, ullam numquam consequuntur nulla dolore voluptatem repellendus amet obcaecati inventore nostrum non velit? Tempora, est quibusdam minima totam iure nobis explicabo facere rerum cumque aperiam, omnis debitis voluptate modi ipsa deleniti obcaecati odio minus dicta quas quaerat nulla unde architecto? Amet, similique. Illo, vel? Minus dolore commodi dolorem ipsum.</p>
                     <p className='lg:my-5 text-justify text-sm md:text-base w-5/6'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat eos dolorem delectus sint sequi eius. Earum, possimus! Quia cupiditate atque quod sequi quos deleniti beatae at! Consectetur recusandae sapiente neque.</p>
