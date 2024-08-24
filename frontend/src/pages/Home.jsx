@@ -18,7 +18,7 @@ import DphosOriginalsAdvert from '../Components/Home Page Components/DphosOrigin
 export default function Home() {
   const [searchTerm, setsearchTerm] = useState('')
   const location = useLocation(); 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   console.log(searchTerm);
   
   useEffect(() => {
@@ -28,6 +28,13 @@ export default function Home() {
     setsearchTerm(searchTermFromUrl)
    }
   }, [location.search])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search)
+    urlParams.set('searchTerm', searchTerm );
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`)  }
   
   return (
     <div className='py-20 lg:py-16 w-full bg-purple-100' >
@@ -69,10 +76,16 @@ export default function Home() {
    <div className=' gap-3 bg-purple-900 h-[250px] rounded-xl' style={{ background: "linear-gradient(to left, #d251ee, #000000)"}} >
      <p className='text-white py-5 px-5 text-2xl'>Search for any stories, poems and drama, we've got you covered</p>
        <div className='relative'>
+        
+     <form action="" onSubmit={handleSubmit}>
          <input type="text" placeholder='Search anything'
-       className='px-3 p-1 m-5 rounded-xl w-4/5'
-       value={searchTerm}/>
-       <FaSearch className='absolute top-6  text-purple-900 right-16 text-xl' />
+            className='px-3 p-2 m-5 rounded-xl w-4/5'
+            value={searchTerm}
+            onChange={(e) => setsearchTerm(e.target.value)}/>
+        <button>
+              <FaSearch className='absolute top-8  text-purple-900 right-44 text-xl' />
+        </button>
+      </form>
          </div>
          
     <div className='flex flex-wrap items-center justify-between  gap-2 my-2 mx-5 '>
