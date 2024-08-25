@@ -36,16 +36,37 @@ export default function Search() {
   }, [location.search])
   
   return (
-    <div className='py-24'>
+    <div className='py-24 flex' >
 
-      <form>
+      <form className='px-5 w-1/4' >
         <div>
-          <label> SearchTerm</label>
-          <input type="text" placeholder='Search...'
-          id='searchTerm'
-           />
+          <div className='bg-gray-200 h-24 px-5 py-2 rounded-lg'>
+              <label> SearchTerm </label>
+              <p> 
+                  <input type="text" placeholder='Search...'
+                  id='searchTerm' className='p-2 rounded-lg w-full border my-2 '/>
+              </p>
+          </div>
+
+          <div className='bg-gray-200 h-24 px-5 py-2 my-5 rounded-lg'>
+              <label> Genre </label>
+              <p>
+                <select name="genre" class="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  // onChange={(e)=> setformData({... formData, genre: e.target.value})}
+                  >
+                  <option value="uncategorized" class="text-gray-700">Select a genre</option>
+                  <option value="drama" class="text-gray-700">Drama</option>
+                  <option value="prose" class="text-gray-700">Prose</option>
+                  <option value="poetry" class="text-gray-700">Poetry</option>
+                  </select>
+              </p>
+          </div>
+
+          
+
         </div>
       </form>
+
       <div></div>
 
 
