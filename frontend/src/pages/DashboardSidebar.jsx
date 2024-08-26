@@ -72,7 +72,7 @@ export default function DashboardSidebar() {
            <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <MdDashboard /> Dashboard</li>
             </Link>
 
-            <Link to='/dashboard/edit_profile'>
+            <Link to='/dashboard/edit-profile'>
               <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> Edit Profile</li>
             </Link>
            

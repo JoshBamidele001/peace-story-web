@@ -62,7 +62,120 @@ export default function Search() {
               </p>
           </div>
 
-          
+          <div className='bg-gray-200 h-80 px-5 py-2 my-5 rounded-lg'>
+              <label> Categories </label>
+              <div>
+                  <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Adventure
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Biblical Stories 
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Science Fiction
+                            </label>
+                      </div>
+                     
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Mystery Thriller
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Historical Fiction
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Biography
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Children Stories
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Literary Fiction
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Humor
+                            </label>
+                      </div>
+                      <div class="flex items-center my-1">
+                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            // defaultChecked={false}
+                            // onChange={handleChange}
+                            />
+                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
+                            Non-fiction
+                            </label>
+                      </div>
+                      
+                  </div>
+            </div>
+
+            <div className='bg-gray-200 h-24 px-5 py-2 my-5 rounded-lg'>
+              <label> Sort </label>
+              <p>
+                <select name="genre" class="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  // onChange={(e)=> setformData({... formData, genre: e.target.value})}
+                  >
+                  <option value="uncategorized" class="text-gray-700">Select a genre</option>
+                  <option value="drama" class="text-gray-700">Latest</option>
+                  <option value="prose" class="text-gray-700">Oldest</option>
+                  </select>
+              </p>
+          </div>
+
+          <button className='bg-purple-900 text-white w-full p-2 rounded-xl'>SEARCH</button>
+
+
 
         </div>
       </form>
