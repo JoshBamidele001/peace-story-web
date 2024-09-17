@@ -180,7 +180,20 @@ export default function Search() {
         </div>
       </form>
 
-      <div></div>
+        <div>
+      <div>
+        <h1 className='font-semibold text-3xl sm:border-b border-gray-500p-3 mt-5'>Search Results</h1>
+      </div>
+
+      <div className='p-7 flex flex-col gap-4'>
+        {
+          !loading && posts.length === 0 && (
+              <p> NO POST FOUND</p>
+          )
+        }
+      </div>
+
+        </div>
 
 
     </div>
