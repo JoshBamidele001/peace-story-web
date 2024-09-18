@@ -6,7 +6,7 @@ export default function Search() {
   const [sidebarData, setsidebarData] = useState({
     searchTerm: '',
     sort: 'desc',
-    category: 'uncategorized',
+    category: [],
     genre: 'uncategorized'
   });
   console.log(sidebarData);
@@ -25,7 +25,7 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     const sortFromUrl = urlParams.get('sort');
-    const categoryFromUrl = urlParams.get('category');
+    const categoryFromUrl = urlParams.get('category')?.split(',') || [];
     const genreFromUrl = urlParams.get('genre');
   
     if (searchTermFromUrl ||
@@ -34,10 +34,10 @@ export default function Search() {
         genreFromUrl) {
 
       setsidebarData({
-        searchTerm: searchTermFromUrl,
-        sort: sortFromUrl,
+        searchTerm: searchTermFromUrl || '',
+        sort: sortFromUrl || 'desc',
         category: categoryFromUrl,
-        genre: genreFromUrl,
+        genre: genreFromUrl || 'uncategorized',
       })
     }
   
@@ -59,28 +59,29 @@ export default function Search() {
   }, [location.search]);
   
 
-  const handleChange = (e) =>{
-    if (e.target.id === 'searchTerm'){
-      setsidebarData({...sidebarData, searchTerm: e.target.value})
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    if (id === 'searchTerm') {
+      setsidebarData({ ...sidebarData, searchTerm: value });
+    } else if (id === 'category') {
+      setsidebarData({ ...sidebarData, category: value ? [value] : [] });
+    } else if (id === 'sort') {
+      setsidebarData({ ...sidebarData, sort: value || 'desc' });
+    } else if (id === 'genre') {
+      setsidebarData({ ...sidebarData, genre: value || 'uncategorized' });
     }
+  };
 
-    if (e.target.id === 'category') {
-      const category = e.target.value || 'uncategorized'; // Use 'category' instead of 'categories'
-      setsidebarData({...sidebarData, category});
-    }
-    
 
-    if (e.target.id === 'sort' ) {
-      const order = e.target.value  || 'desc';
-      setsidebarData({...sidebarData, sort: order})
-    }
-
-    if (e.target.id === 'genre' ) {
-      const genre = e.target.value  || 'uncategorized';
-      setsidebarData({...sidebarData, genre})
-    }
-
-  }
+  const handleCategoryChange = (e) => {
+    const { value, checked } = e.target;
+    const updatedCategories = checked
+      ? [...sidebarData.category, value] // Add if checked
+      : sidebarData.category.filter((category) => category !== value); // Remove if unchecked
+  
+    setsidebarData({ ...sidebarData, category: updatedCategories });
+  };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Correct the typo here
@@ -88,7 +89,7 @@ export default function Search() {
     urlParams.set('searchTerm', sidebarData.searchTerm);
     urlParams.set('sort', sidebarData.sort);
     urlParams.set('genre', sidebarData.genre);
-    urlParams.set('category', sidebarData.category); // Correct this key
+    urlParams.set('category', sidebarData.category.join(','));
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   }
@@ -125,104 +126,163 @@ export default function Search() {
                   </select>
               </p>
           </div>
+      
 
-          <div className='bg-gray-200 h-80 px-5 py-2 my-5 rounded-lg'>
-              <label> Categories </label>
-              <div>
-                  <div class="flex items-center my-1">
-                            <input id="adventure" name="categories" type="checkbox" value="adventure" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="adventure" class="ml-3 block text-sm font-medium text-gray-700">
-                            Adventure
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="biblical_stories" name="categories" type="checkbox" value="biblical_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="biblical_stories" class="ml-3 block text-sm font-medium text-gray-700">
-                            Biblical Stories 
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="science_fiction" name="categories" type="checkbox" value="science_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="science_fiction" class="ml-3 block text-sm font-medium text-gray-700">
-                            Science Fiction
-                            </label>
-                      </div>
-                     
-                      <div class="flex items-center my-1">
-                            <input id="mystery_thriller" name="categories" type="checkbox" value="mystery_thriller" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="mystery_thriller" class="ml-3 block text-sm font-medium text-gray-700">
-                            Mystery Thriller
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="historian_fiction" name="categories" type="checkbox" value="historian_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="historian_fiction" class="ml-3 block text-sm font-medium text-gray-700">
-                            Historical Fiction
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="biography" name="categories" type="checkbox" value="biography" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="biography" class="ml-3 block text-sm font-medium text-gray-700">
-                            Biography
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="children_stories" name="categories" type="checkbox" value="children_stories" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="children_stories" class="ml-3 block text-sm font-medium text-gray-700">
-                            Children Stories
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="literary_fiction" name="categories" type="checkbox" value="literary_fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="literary_fiction" class="ml-3 block text-sm font-medium text-gray-700">
-                            Literary Fiction
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="humor" name="categories" type="checkbox" value="humor" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="humor" class="ml-3 block text-sm font-medium text-gray-700">
-                            Humor
-                            </label>
-                      </div>
-                      <div class="flex items-center my-1">
-                            <input id="non-fiction" name="categories" type="checkbox" value="non-fiction" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                            // defaultChecked={false}
-                            // onChange={handleChange}
-                            />
-                            <label for="non-fiction" class="ml-3 block text-sm font-medium text-gray-700">
-                            Non-fiction
-                            </label>
-                      </div>
-                      
-                  </div>
-            </div>
+<div className='bg-gray-200 h-80 px-5 py-2 my-5 rounded-lg'>
+  <label> Categories </label>
+  <div>
+    <div className="flex items-center my-1">
+      <input
+        id="adventure"
+        name="categories"
+        type="checkbox"
+        value="adventure"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("adventure")}
+        onChange={handleCategoryChange} // <-- Handle changes here
+      />
+      <label htmlFor="adventure" className="ml-3 block text-sm font-medium text-gray-700">
+        Adventure
+      </label>
+    </div>
+    <div className="flex items-center my-1">
+      <input
+        id="biblical_stories"
+        name="categories"
+        type="checkbox"
+        value="biblical_stories"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("biblical_stories")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="biblical_stories" className="ml-3 block text-sm font-medium text-gray-700">
+        Biblical Stories
+      </label>
+    </div>
+    <div className="flex items-center my-1">
+      <input
+        id="science_fiction"
+        name="categories"
+        type="checkbox"
+        value="science_fiction"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("science_fiction")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="science_fiction" className="ml-3 block text-sm font-medium text-gray-700">
+        Science Fiction
+      </label>
+    </div>
+    {/* Repeat the pattern for all other categories */}
+    <div className="flex items-center my-1">
+      <input
+        id="mystery_thriller"
+        name="categories"
+        type="checkbox"
+        value="mystery_thriller"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("mystery_thriller")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="mystery_thriller" className="ml-3 block text-sm font-medium text-gray-700">
+        Mystery Thriller
+      </label>
+    </div>
+    <div className="flex items-center my-1">
+      <input
+        id="historian_fiction"
+        name="categories"
+        type="checkbox"
+        value="historian_fiction"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("historian_fiction")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="historian_fiction" className="ml-3 block text-sm font-medium text-gray-700">
+        Historical Fiction
+      </label>
+    </div>
+    {/* Add more checkboxes for other categories */}
+
+    <div className="flex items-center my-1">
+      <input
+        id="biography"
+        name="categories"
+        type="checkbox"
+        value="biography"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("biography")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="biography" className="ml-3 block text-sm font-medium text-gray-700">
+        Biography
+      </label>
+    </div>
+
+    <div className="flex items-center my-1">
+      <input
+        id="children_stories"
+        name="categories"
+        type="checkbox"
+        value="children_stories"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("children_stories")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="children_stories" className="ml-3 block text-sm font-medium text-gray-700">
+       Children Stories
+      </label>
+    </div>
+
+    <div className="flex items-center my-1">
+      <input
+        id="literacy_fiction"
+        name="categories"
+        type="checkbox"
+        value="literacy_fiction"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("literacy_fiction")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="literacy_fiction" className="ml-3 block text-sm font-medium text-gray-700">
+        Literacy Fiction
+      </label>
+    </div>
+
+    <div className="flex items-center my-1">
+      <input
+        id="humor"
+        name="categories"
+        type="checkbox"
+        value="humor"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("humor")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="humor" className="ml-3 block text-sm font-medium text-gray-700">
+       Humor
+      </label>
+    </div>
+
+    <div className="flex items-center my-1">
+      <input
+        id="non-fiction"
+        name="categories"
+        type="checkbox"
+        value="non-fiction"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+        checked={sidebarData.category.includes("non-fiction")}
+        onChange={handleCategoryChange}
+      />
+      <label htmlFor="non-fiction" className="ml-3 block text-sm font-medium text-gray-700">
+        Non-Fiction
+      </label>
+    </div>
+
+
+  </div>
+</div>
+
 
             <div className='bg-gray-200 h-24 px-5 py-2 my-5 rounded-lg'>
               <label> Sort </label>

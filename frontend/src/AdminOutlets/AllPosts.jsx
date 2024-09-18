@@ -116,7 +116,6 @@ export default function AllPosts() {
                           <td className='flex items-center justify-center'> <img src={post.image} alt={post.title}
                           className='w-20 h-20 object-contain bg-gray-500 '/> </td>
                          </Link>
-
                         
 
                           <td className="border px-4 py-3" >
