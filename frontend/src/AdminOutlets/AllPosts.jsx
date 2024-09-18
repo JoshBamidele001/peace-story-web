@@ -126,7 +126,7 @@ export default function AllPosts() {
                           <td className="border px-4 py-3" >{post.genre}</td>
                           <td className="border px-4 py-3" >{post.category}</td>
                           <td className="border px-4 py-3" >
-                            <Link to={`/ad_min/update-post/${post._id}`}>
+                            <Link to={`/admin/update_post/${post._id}`}>
                             <p className='text-green-500 font-semibold hover:underline'>Edit</p>
                             </Link>
                             

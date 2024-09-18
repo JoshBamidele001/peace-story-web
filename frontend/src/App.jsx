@@ -72,7 +72,7 @@ export default function App() {
               <Route path='/admin/setting' element={<Setting/>} />
               <Route path='/admin/error' element={<Error404/>} />
               <Route path='/admin/all-comments' element={<Table/>} />
-              <Route path='/admin/update-post/:postId' element={<UpdatePost/>} />
+              <Route path='/admin/update_post/:postId' element={<UpdatePost/>} />
           </Route> 
              
           </Route>
