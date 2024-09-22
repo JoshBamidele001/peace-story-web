@@ -43,11 +43,11 @@ export default function Home() {
        
             {/* Carousel and the search div flex */}
         <div className='w-full lg:px-10'>
-            <Bubbles>
+            {/* <Bubbles> */}
         <div className= "lg:py-1  ">          
       
-          <div className='flex flex-col md:flex-row  items-center justify-around pt-20 gap-5 z-50'>
-          <div className='text-2xl lg:mx-16 py-10 flex flex-col md:flex-col gap-5 '>
+          <div className='flex flex-col md:flex-row  items-center justify-around md:pt-20 pt-10 gap-5 z-50'>
+          <div className=' lg:mx-16 md:py-10 flex flex-col md:flex-col gap-5 '>
                     <Link to='/'>
                         <div className='flex items-center gap-1 mx-4 md:mx-0'>
                         <p className='text-2xl text-purple-800'><FaSwatchbook /></p>
@@ -55,12 +55,12 @@ export default function Home() {
                         </div> 
                       </Link>
  
-                      <div className='flex flex-col mx-4 md:mx-0 '>
-                      <p className='text-purple-800 text-base md:text-2xl  font-semibold'>Number 1 godly and moral online reading Platform</p>
-                      <small className='text-purple-800 text-base font-semibold'>We are here to give you the best stories, poems, and drama, essential for personal developement</small>
+                      <div className='flex flex-col mx-4 md:mx-0 gap-2 md:gap-0  '>
+                      <p className='text-purple-800 md:text-2xl text-sm  font-semibold'>Number 1 godly and moral online reading Platform</p>
+                      <small className='text-purple-800 text-sm md-text-2xl font-semibold'>We are here to give you the best stories, poems, and drama, essential for personal developement</small>
                       </div>
 
-                      <button className='btn bg-purple-900 text-white font-semibold p-2 rounded-xl max-w-64'>Get Started</button>
+                      <button className='btn bg-purple-900 text-white font-semibold md:p-2 p-1 rounded-xl mx-4 md:mx-0 md:max-w-64'>Get Started</button>
                   </div>
               <div className='flex flex-col-reverse md:flex-col'>        
                 <Carousel/>
@@ -116,13 +116,13 @@ export default function Home() {
 
         
             
-            </Bubbles>
+            {/* </Bubbles> */}
         </div>
               <Land1/>
               <Land2/>
               <Land3/>
                 <p className='text-2xl md:text-3xl lg:text-3xl text-purple-900 px-16 py-5 font-semibold'>Top stories:</p>
-              <div className='flex justify-center items-start gap-10'>
+              <div className='flex flex-col sm:flex-row justify-center items-start gap-10'>
                 {/* Top Stories  */}
               <PostOnHome/>
               <AdvertCard
