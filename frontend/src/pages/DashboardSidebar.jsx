@@ -48,13 +48,13 @@ export default function DashboardSidebar() {
     <div className='bg-[rgb(16,23,42)] lg:pb-40 h- sticky top-24 text-gray-200' style={{ background: "linear-gradient(to bottom,  #000000, #d251ee)"}}>
 
         <Link to='/'>
-        <div className='flex items-center gap-2 p-10'>
+        <div className='hidden md:flex items-center gap-2 p-10'>
         <p className='text-xl'><FaSwatchbook /></p>
         <p className='text-base md:text-2xl lg:text-xl font-semibold'> dphosPENS</p>
         </div>
         </Link>
 
-        <div className='flex justify-center flex-col items-center mb-10'>
+        <div className='flex justify-center flex-col items-center mb-10 md:mt-0 mt-5'>
           <img src={currentUser.avatar}
           className='w-16 h-16 border-8 rounded-full' alt="" />
           <small>{currentUser.name}</small>
@@ -75,7 +75,6 @@ export default function DashboardSidebar() {
             <Link to='/dashboard/edit-profile'>
               <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> Edit Profile</li>
             </Link>
-           
 
             <Link to='/dashboard/my_library'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />My Library</li>

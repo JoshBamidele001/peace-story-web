@@ -72,23 +72,23 @@ export default function Home() {
 
             <div className='flex flex-col'>
 
-<div className='py-5 text-center '>  
-   <div className=' gap-3 bg-purple-900 h-[250px] rounded-xl' style={{ background: "linear-gradient(to left, #d251ee, #000000)"}} >
-     <p className='text-white py-5 px-5 text-2xl'>Search for any stories, poems and drama, we've got you covered</p>
+<div className='py-5 text-center mx-1 md:mx-0 '>  
+   <div className=' gap-3 bg-purple-900 h-[170px] md:h-[250px]  rounded-xl' style={{ background: "linear-gradient(to left, #d251ee, #000000)"}} >
+     <p className='text-white py-5 px-5 md:text-2xl'>Search for any stories, poems and drama, we've got you covered</p>
        <div className='relative'>
         
      <form action="" onSubmit={handleSubmit}>
          <input type="text" placeholder='Search anything'
-            className='px-3 p-2 m-5 rounded-xl w-4/5'
+            className='md:px-3 md:p-2 p-1 md:m-5 rounded-xl w-4/5'
             value={searchTerm}
             onChange={(e) => setsearchTerm(e.target.value)}/>
         <button>
-              <FaSearch className='absolute top-8  text-purple-900 right-44 text-xl' />
+              <FaSearch className='absolute top-2  md:top-8  text-purple-900 right-10 md:right-44 text-xl' />
         </button>
       </form>
          </div>
          
-    <div className='flex flex-wrap items-center justify-between  gap-2 my-2 mx-5 '>
+    <div className='md:flex hidden flex-wrap items-center justify-between  gap-2 my-2 mx-5 '>
        <span className='px-2 border-b-4 text-xs bg-white py-1 rounded-xl'>Genre</span>
          <span className='px-2 border-b-4 text-xs bg-white py-1 rounded-xl'>Poems</span>
          <span className='px-2 border-b-4 text-xs bg-white py-1 rounded-xl'>Drama</span>

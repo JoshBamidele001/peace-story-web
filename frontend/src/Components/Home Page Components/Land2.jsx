@@ -2,10 +2,10 @@ import React from 'react';
 
 const ExpertTutors = () => {
   return (
-    <div className="bg-white py-12">
+    <div className="bg-white py-12 md:mx-0 mx-2 px-2 md:px-0">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="text-center md:text-left md:w-1/2">
-          <h2 className="lg:text-5xl text-3xl  font-bold mb-4 text-wrap">We have highly expert & experienced writers</h2>
+          <h2 className="lg:text-5xl md:text-3xl text-2xl  font-bold mb-4 text-wrap">We have highly expert & experienced writers</h2>
           <p className="text-gray-600 mb-6">We are confident that with our tutors' guidance, support, and commitment to excellence, students will thrive academically and reach their educational goals.</p>
           <button className="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600 transition duration-300">Submit your ideas</button>
         </div>

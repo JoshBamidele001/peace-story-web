@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { IoMdMenu } from "react-icons/io";
 import { FaSwatchbook, FaSun, FaMoon } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 import { useSelector, useDispatch } from 'react-redux';
+import { IoClose } from "react-icons/io5";
 import {toggleTheme} from '../redux/theme/themeSlice'
 
 
 export default function Navbar() {
+
+  const [isMenuOpen, setisMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setisMenuOpen(!isMenuOpen)
+   
+  }
+
+  const handleMenuClick = () => {
+    setisMenuOpen(false);
+  }
 
   const dispatch = useDispatch()
   const {currentUser} = useSelector(state => state.user)
@@ -21,7 +33,7 @@ export default function Navbar() {
             <Link to='/'>
             <li>Home</li>
             </Link>
-            <Link to='read'>
+            <Link to='/read'>
             <li>Read</li>
             </Link>
             <Link to='/publish'>
@@ -76,8 +88,15 @@ export default function Navbar() {
 
        <div className='flex gap-5 text-3xl '>
 
-       <div className='md:hidden'>
-       <IoMdMenu />
+       <div className='md:hidden text-white' onClick={toggleMenu}>
+        {
+          isMenuOpen ? (
+
+            <IoClose /> 
+          ) : (
+            <IoMdMenu />
+          )
+        }
        </div>
 
        {/* <button type='button' onClick={() => dispatch(toggleTheme())}>
@@ -86,15 +105,50 @@ export default function Navbar() {
           } 
        </button> */}
 
-       <div className='md:hidden'>
-       <Link to='/sign-up'>
-          <IoIosLogIn />
-       </Link>
-       </div>
+<div className='md:hidden'>
+                { currentUser ? (
+                  <Link to={'/dashboard'}>
+                  <img src={currentUser.avatar} alt="Profile picture" className='w-8 h-8 rounded-full' /> 
+                  </Link>
+                ) : (
+
+                <Link to='/sign-up' className='text-white'>
+                    <IoIosLogIn />
+                </Link>
+                )
+                
+                }
+
+  </div>
        </div>
 
+       { isMenuOpen ? (
+              
+              <ul className='flex flex-col md:hidden text-purple-800 font-semibold justify-between bg-white p-8 leading-8 absolute top-20 w-full '>
+               <Link to='/' onClick={handleMenuClick}>
+               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Home</li>
+               </Link>
+               <Link to='/read' onClick={handleMenuClick} >
+               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Read</li>
+               </Link>
+               <Link to='/publish' onClick={handleMenuClick} >
+               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Submit a Story</li>
+               </Link>
+               <Link to='/lets-write-for-you' onClick={handleMenuClick}>
+               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Our Assemblies</li>
+               </Link>
+               <Link to='/about-us' onClick={handleMenuClick}>
+               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>About</li>
+               </Link>
+               
+           </ul>
+         
+       ) : null
 
-    </div>3
+       }
+
+
+    </div>
 
 
     </>
