@@ -6,6 +6,7 @@ import authRouter from './routes/authRoute.js'
 import postRouter from './routes/postRoute.js'
 import commentRouter from './routes/commentRoute.js'
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 dotenv.config()
 
@@ -27,6 +28,14 @@ app.use("/api/auth", authRouter);
 app.use("/api/post", postRouter);
 app.use("/api/comment", commentRouter);
 
+// Serve static files from the frontend/dist directory
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+// Catch-all route to serve the frontend app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+});
 
 
 
