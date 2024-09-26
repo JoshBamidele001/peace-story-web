@@ -105,6 +105,8 @@ export default function Navbar() {
           } 
        </button> */}
 
+       {/* mobile responsiviness */}
+
 <div className='md:hidden'>
                 { currentUser ? (
                   <Link to={'/dashboard'}>
@@ -140,6 +142,13 @@ export default function Navbar() {
                <Link to='/about-us' onClick={handleMenuClick}>
                <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>About</li>
                </Link>
+               {
+                  currentUser && currentUser.isAdmin && (
+                <Link to='/admin' onClick={handleMenuClick}>
+                <li>Admin</li>
+                </Link>
+                  )
+              }
                
            </ul>
          

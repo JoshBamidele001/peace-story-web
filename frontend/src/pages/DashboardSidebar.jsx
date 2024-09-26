@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaSwatchbook, FaEdit, FaAddressBook, FaSave  } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { IoLibrary, IoLogOut  } from "react-icons/io5";
+
 import { logoutUserFailure, logoutUserStart, logoutUserSuccess } from '../redux/user/userSlice';
 
 
@@ -13,6 +14,18 @@ export default function DashboardSidebar() {
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+
+  const [isMenuOpen, setisMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setisMenuOpen(!isMenuOpen)
+   
+  }
+
+  const handleMenuClick = () => {
+    setisMenuOpen(false);
+  }
 
   const handleLogoutClick = () => {
     setModalOpen(true);
@@ -45,7 +58,8 @@ export default function DashboardSidebar() {
 }
 
   return (
-    <div className='bg-[rgb(16,23,42)] lg:pb-40 h- sticky top-24 text-gray-200' style={{ background: "linear-gradient(to bottom,  #000000, #d251ee)"}}>
+    <>
+    <div className='bg-[rgb(16,23,42)] lg:pb-40 h- sticky top-24 text-gray-200 hidden md:block' style={{ background: "linear-gradient(to bottom,  #000000, #d251ee)"}}>
 
         <Link to='/'>
         <div className='hidden md:flex items-center gap-2 p-10'>
@@ -65,6 +79,8 @@ export default function DashboardSidebar() {
         </div>
 
         <hr />
+
+       
 
         <ul className='  leading-2 text-semibold'>
 
@@ -87,14 +103,58 @@ export default function DashboardSidebar() {
             </Link>
             <li onClick={handleLogoutClick} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
         </ul>
-                  <Modal
+              
+                 
+    </div>
+                 <Modal
                   isOpen={isModalOpen}
                   onClose={closeModal}
                   onConfirm={confirmLogout}
                   title="Log Out"
+                  
                 >
               Are you sure you want to log out?
             </Modal>
-    </div>
+
+            {/* Menu for mobile responsiviness */}
+            
+            <div className='md:hidden mt-16' onClick={toggleMenu}>
+
+              {
+                isMenuOpen ? null :  (
+
+    <ul className=' leading-2 text-semibold'>
+
+      <Link to='/dashboard' onClick={handleMenuClick}>
+      <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <MdDashboard /> Dashboard</li>
+      </Link>
+
+      <Link to='/dashboard/edit-profile' onClick={handleMenuClick}>
+        <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> Edit Profile</li>
+      </Link>
+
+      <Link to='/dashboard/my_library'onClick={handleMenuClick}>
+      <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />My Library</li>
+      </Link>
+      <Link to='/dashboard/saved_books' onClick={handleMenuClick}>
+      <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />Saved Books</li>
+      </Link>
+      <Link to='/dashboard/add_book_listing' onClick={handleMenuClick}>
+      <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Add book listing</li>
+      </Link>
+      <li onClick={handleLogoutClick} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>
+      </ul>
+                )
+              }
+
+
+
+     
+
+            
+            </div>
+
+
+    </>
   )
 }

@@ -210,7 +210,7 @@ export default function PostPage() {
           <p className='max-w-6xl lg:mx-auto py-5 text-2xl font-semibold'>Similar {post.genre} you would like:</p>
 
           <div className='max-w-7xl mx-auto'>
-            <div className='flex'>
+            <div className='flex flex-col md:flex-row'>
                 <div>
                     <div className='flex flex-wrap max-w-4xl lg:mx-auto  gap-5'>
                       { similarStory && similarStory.map((post) => (

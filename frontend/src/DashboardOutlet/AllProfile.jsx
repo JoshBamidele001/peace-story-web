@@ -6,7 +6,7 @@ export default function Packages() {
   return (
     <>
       {/* the searcjh button of the books */}
-      <input type="text" placeholder='Search a book' className='py-1 px-10 w-96 rounded-lg border-8 border-purple-800' />
+      <input type="text" placeholder='Search a book' className='py-1 px-10 w-full sm:w-96 rounded-lg border-8 border-purple-800' />
 
       {/* Welcome user note */}
       <div>
@@ -20,7 +20,7 @@ export default function Packages() {
       <button className='bg-purple-800 text-white px-5 py-2 rounded-lg m-3'>Explore Books</button>
 
       {/* this is the counter on the profile */}
-      <div className='mt-5 flex gap-8 mb-10 text-white '>
+      <div className='mt-5 flex flex-col md:flex-row gap-8 mb-10 text-white '>
           <div className='w-60 h-40 rounded-2xl shadow-xl hover:shadow-2xl bg-gray-200' style={{ background: "linear-gradient(to top,  #000000, #d251ee)"}}>
             <p className='p-5 text-lg font-semibold '>Total Books Read:</p>
             <p className='text-6xl  p-5 font-semibold'>0</p>
