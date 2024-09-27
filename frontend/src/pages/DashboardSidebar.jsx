@@ -92,13 +92,13 @@ export default function DashboardSidebar() {
               <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaEdit /> Edit Profile</li>
             </Link>
 
-            <Link to='/dashboard/my_library'>
+            <Link to='/dashboard/my-library'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <IoLibrary />My Library</li>
             </Link>
-            <Link to='/dashboard/saved_books'>
+            <Link to='/dashboard/saved-books'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'> <FaSave />Saved Books</li>
             </Link>
-            <Link to='/dashboard/add_book_listing'>
+            <Link to='/dashboard/add-book-listing'>
             <li className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><FaAddressBook /> Add book listing</li>
             </Link>
             <li onClick={handleLogoutClick} className='py-4 px-10 hover:bg-[rgba(29,43,80,0.29)] hover:border-s-8 flex gap-2 items-center'><IoLogOut />Log out</li>

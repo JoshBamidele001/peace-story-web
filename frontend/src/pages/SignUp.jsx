@@ -103,7 +103,7 @@ const handleSubmit = async (e)=>{
         <hr />
 
           <form onSubmit={handleSubmit}>
-              <h2 className='text-2xl text-center font-semibold mt-5 '>Sign Up</h2>
+              <h2 className='text-2xl text-center font-semibold mt-5 text-purple-800 '>Sign Up</h2>
 
               {
                 ErrorMessage && (
@@ -111,17 +111,17 @@ const handleSubmit = async (e)=>{
                 )
               }
               <div className="mb-4">
-                <label className='block text-gray-700' htmlFor="name">Name</label>
+                <label className='block text-purple-700' htmlFor="name">Name</label>
                 <input
                 className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="text" id="name" onChange={handleChange} />
               </div>
               <div className="mb-4">
-                  <label className='block text-gray-700' htmlFor="email">Email</label>
+                  <label className='block text-purple-700' htmlFor="email">Email</label>
                   <input
                   className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="email" id="email" onChange={handleChange} />
               </div>
               <div className="mb-4 relative">
-                <label className='block text-gray-700' htmlFor="password">Password</label>
+                <label className='block text-purple-700' htmlFor="password">Password</label>
                 <input 
                   value={password}
                   onChange={handlePasswordChange}
@@ -135,7 +135,7 @@ const handleSubmit = async (e)=>{
               </div>
 
               <div className="mb-4 relative">
-                <label className='block text-gray-700' htmlFor="password"> Confirm Password</label>
+                <label className='block text-purple-700' htmlFor="password"> Confirm Password</label>
                 <input 
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}
@@ -158,7 +158,7 @@ const handleSubmit = async (e)=>{
           
           </form>
 
-          <p className='text-sm my-5'>Already have an account, <Link to='/sign-in'><span className='text-green-800 font-semibold'>Log in</span></Link></p>
+          <p className='text-sm my-5'>Already have an account, <Link to='/sign-in'><span className='text-green-800 font-semibold text-purple-800'>Log in</span></Link></p>
 
 
     </div>

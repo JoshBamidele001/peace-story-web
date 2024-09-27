@@ -96,9 +96,9 @@ export default function Search() {
   
   
   return (
-    <div className='py-24 flex' >
+    <div className='py-24 flex flex-col md:flex-row' >
 
-      <form className='px-5 w-1/4' onSubmit={handleSubmit}>
+      <form className='px-5 w-full md:w-1/4 ' onSubmit={handleSubmit}>
         <div>
           <div className='bg-gray-200 h-24 px-5 py-2 rounded-lg'>
               <label> SearchTerm </label>
@@ -308,7 +308,7 @@ export default function Search() {
 
         <div>
             <div>
-              <h1 className='font-semibold text-3xl sm:border-b border-gray-500p-3 mt-5'>Search Results</h1>
+              <h1 className='font-semibold md:text-3xl text-center md:text-start  sm:border-b border-gray-500p-3 mt-5'>Search Results</h1>
             </div>
 
             <div className='p-3 flex flex-col gap-4'>

@@ -137,7 +137,7 @@ export default function Navbar() {
                <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Submit a Story</li>
                </Link>
                <Link to='/lets-write-for-you' onClick={handleMenuClick}>
-               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Our Assemblies</li>
+               <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>Lets Write for you</li>
                </Link>
                <Link to='/about-us' onClick={handleMenuClick}>
                <li className='hover:text-orange-700 border-b-2 hover:border-b-2'>About</li>

@@ -75,7 +75,7 @@ const handleSubmit = async (e)=>{
               <div className='flex flex-col items-center justify-center gap-2 mt-10 mb-5 '>
               <div className='flex items-center justify-center gap-2'>
               <p className='text-xl'><FaSwatchbook /></p>
-              <p className='text-base md:text-2xl lg:text-3xl font-semibold'> dphosPENS</p>
+              <p className='text-base md:text-2xl lg:text-3xl font-semibold text-purple-800' > dphosPENS</p>
               </div>
               <small>...lets help you bring out your story</small>
               </div>
@@ -83,7 +83,7 @@ const handleSubmit = async (e)=>{
         <hr />
 
           <form onSubmit={handleSubmit}>
-              <h2 className='text-2xl text-center font-semibold mt-5 '>Sign In</h2>
+              <h2 className='text-2xl text-center font-semibold mt-5 text-purple-800'>Sign In</h2>
 
               {
                 ErrorMessage && (
@@ -92,12 +92,12 @@ const handleSubmit = async (e)=>{
               }
             
               <div className="mb-4">
-                  <label className='block text-gray-700' htmlFor="email">Email</label>
+                  <label className='block text-purple-700' htmlFor="email">Email</label>
                   <input
                   className='border-2 rounded-xl block w-full p-2 pl-10 text-gray-700' type="email" id="email" onChange={handleChange} />
               </div>
               <div className="mb-4 relative">
-                <label className='block text-gray-700' htmlFor="password">Password</label>
+                <label className='block text-purple-700' htmlFor="password">Password</label>
                 <input 
                   
                   onChange={handleChange}
@@ -115,14 +115,14 @@ const handleSubmit = async (e)=>{
               
               
               <button
-              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #ff0000, #0066ff)"}}  >Sign In </button>
+              className=' hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl w-full '  style={{ background: "linear-gradient(to left, #000000,  #d251ee)"}}  >Sign In </button>
 
               <OAuth/>
           
           
           </form>
 
-          <p className='text-sm my-5'>Dont have an account, <Link to='/sign-up'><span className='text-green-800 font-semibold'>Sign up</span></Link></p>
+          <p className='text-sm my-5'>Dont have an account, <Link to='/sign-up'><span className='text-purple-800 font-semibold'>Sign up</span></Link></p>
 
 
     </div>
