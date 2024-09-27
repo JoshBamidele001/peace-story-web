@@ -26,7 +26,7 @@ export default function Drama() {
                 drama && drama.length > 0 && (
                     <div>
                         <div>
-                            <p className='text-center py-5 text-purple-900 lg:text-3xl font-semibold'>Because you love drama, here are other drama</p>
+                            <p className='text-center py-5 text-purple-900 lg:text-3xl font-semibold'>For lovers of drama, here are dramas for you:</p>
                         </div>
                         { drama && drama.map((post) => (
                          <div className='w-full py-5 '>

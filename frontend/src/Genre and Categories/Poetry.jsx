@@ -26,7 +26,7 @@ export default function Poetry() {
                 poetry && poetry.length > 0 && (
                     <div>
                         <div>
-                            <p className='text-center py-5 text-purple-900 lg:text-3xl font-semibold'>Because you love Poetry, here are other Poetry</p>
+                            <p className='text-center py-5 text-purple-900 lg:text-3xl font-semibold'>For lovers of poetry, here are poems for you:</p>
                         </div>
                         { poetry && poetry.map((post) => (
                          <div className='w-full py-5 '>
