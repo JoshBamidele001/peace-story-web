@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 
 const images = [
-  'https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/more%20on%20dphospen%2FADVERT%20001.png?alt=media&token=5aecc6c0-26ee-4cd2-893b-b93bf480600a',
-  'https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/more%20on%20dphospen%2Fadvert%20002.png?alt=media&token=9042bc24-2fb3-42b4-a20d-3a5e8da1dab2',
-  'https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/more%20on%20dphospen%2Fadvert3.png?alt=media&token=52cec550-9457-42c7-a615-dac037267e2f',
-  'https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/more%20on%20dphospen%2FADVERT4.png?alt=media&token=cd0299d1-b313-433a-be6d-0d77ee36fb34',
-  'https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/more%20on%20dphospen%2FBrown%20Eco-Friendly%20Bambook%20Toothbrush%20and%20Pill%20Container%20Brand%20Design%20and%20Strategy%20Online%20Course%20Facebook%20App%20Advert.png?alt=media&token=bdd8c03a-59fb-4732-b099-43f17fe35252',
-  'https://firebasestorage.googleapis.com/v0/b/register-c737c.appspot.com/o/more%20on%20dphospen%2FADVERT%206.png?alt=media&token=950f87b7-80a6-4928-afc2-842efe5f341b',
+  'https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider1_unlock_052109.jpg?alt=media&token=0d296923-30b8-4ba1-93d3-c2265e1fccaa',
+  'https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider2_idea_052132.jpg?alt=media&token=25a1a5ca-db1a-4cf4-8cca-45bb522c4a5c',
+  'https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider3_ghostwriter_052152.jpg?alt=media&token=a2cc0b51-ca03-420e-8b48-93863a0f26f8',
+  'https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider4_editing_052210.jpg?alt=media&token=39bf95eb-52f0-4ce8-ad50-e87d2c9fd0b4',
+  'https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider5_boost_052238.jpg?alt=media&token=d17693fa-c04d-4311-9fb2-7c64dfc9bb68',
+  'https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider6_promote_052047.jpg?alt=media&token=9b5adfca-47a7-44df-a2ed-1aa12c65f62f',
 ];
 
 const Carousel = () => {
