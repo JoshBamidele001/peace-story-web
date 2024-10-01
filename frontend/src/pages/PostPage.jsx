@@ -17,6 +17,8 @@ export default function PostPage() {
   const [similarStory, setSimilarStory] = useState([]);
   const [similarDrama, setSimilarDrama] = useState([]);
   const [similarPoetry, setSimilarPoetry] = useState([]);
+ 
+
   
 
   useEffect(() => {
@@ -44,6 +46,7 @@ export default function PostPage() {
 
     fetchPost();
   }, [postSlug]);
+ 
 
 
 
@@ -139,22 +142,48 @@ export default function PostPage() {
 
   return (
     <main className="pt-24">
-      <div className='h-80 border-b shadow-lg pb-5 shadow-slate-600 flex items-center justify-center self-center'>
-        <img src={post.image} className='p-3 w-56 pb-5' alt={post.title} />
-        <div>
-          <div>{post.title}</div>
-          <div>{post.author}</div>
-          <p>{(post.content.length / 1000).toFixed(0)} mins</p>
+      <div className='h-auto border-b shadow-lg pb-5 shadow-slate-600  items-center justify-center self-center'>
        
-          <Link to={`/post/read/${postSlug}`}>
-            <p className='bg-black rounded-2xl btn text-white px-3 py-2'>Start Reading</p>
-          </Link>
+      {/* style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) , rgba(71,27,80, 0.3), rgba(71,27,80, 0.9)), url('https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/6066776.jpg?alt=media&token=be3f5739-01fa-4e14-9f6e-419f8ea9e6b0')`,
+                    backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPositionX: "40%",}} */}
+
+      <div 
+        className='h-[200px] lg:h-[550px] flex items-center justify-center'
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) , rgba(71,27,80, 0.3), rgba(71,27,80, 0.9)), url('${post.image}')`, 
+          backgroundPosition: 'center', 
+          backgroundRepeat: 'no-repeat', 
+          backgroundSize: 'cover' ,
+          backgroundPositionY: "70%"
+        }}>
+
+              <div className='flex gap-5 justify-center items-center'>
+              <img src={post.image} className='p-3 w-56 pb-5 hidden md:block' alt={post.title} />
+
+              <div className='text-white'>
+                  <div className='text-xl md:text-2xl lg:text-3xl'>{post.title}</div>
+                  <div>{post.author}</div>
+                  <p>{(post.content.length / 1000).toFixed(0)} mins</p>
+              
+                  <Link to={`/post/read/${postSlug}`}>
+                    <p className='bg-black rounded-2xl btn text-white px-3 py-2'>Start Reading</p>
+                  </Link>
         </div>
+
+              </div>
+
+      </div>
+      
+          
+       </div>
+       
+
+       <div>
       </div>
 
       <div className='max-w-5xl lg:mx-auto'>
         <div className='py-5'>
-          <div className='text-xl font-semibold'>
+          <div className='text-xl text-purple-800 font-semibold'>
             {post.genre === 'drama' ? (
               <p>Synopsis of Drama:</p>) : ''
             }
@@ -167,14 +196,14 @@ export default function PostPage() {
           </div>
 
           <div className='text-justify'>
-            <p>{post.synopsis} </p>
+            <p className='text-purple-900'>{post.synopsis} </p>
           </div>
 
         </div>
         {/* the right sidebar of the postSlug */}
         <div className='py-5 text-justify'>
-          <p className='text-xl font-semibold'>Biography of the Author:</p>
-          <p>{post.biography}</p>
+          <p className='text-xl text-purple-800 font-semibold'>Biography of the Author:</p>
+          <p className='text-purple-900'>{post.biography}</p>
         </div>
       </div>
       {/* the call to action */}
