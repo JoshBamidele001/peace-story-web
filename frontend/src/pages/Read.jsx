@@ -8,7 +8,7 @@ export default function Read() {
     <div className='pt-24'>
 
       <div className=' mx-2 md:mx-10 p-10  grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-between '>
-        <div>
+        <div className='transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-95'>
           <img src="https://firebasestorage.googleapis.com/v0/b/dphospens.appspot.com/o/Slider%2FDPHOSPen%20slider1_unlock_052109.jpg?alt=media&token=0d296923-30b8-4ba1-93d3-c2265e1fccaa" alt="" />
         </div>
         <div className=' max-w-3xl  transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-70'> 

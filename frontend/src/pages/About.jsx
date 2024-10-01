@@ -67,52 +67,7 @@ export default function About() {
 
             <hr />
 
-              {/* Other Supreme council members */}
-            <p  className='mx-10 md:mx-0 lg:text-3xl font-semibold text-center text-orange-700 lg:my-10  transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110' >OTHER MEMBERS OF THE SUPREME COUNCIL</p>
-
-                <div className=' mx-10 md:mx-2 lg:mx-20 grid md:grid-cols-4 lg:grid-cols-4'>
-
-                  <div>
-                      <div className='lg:h-[300px] lg:w-[200px] md:h-[150px] md:w-[150px] rounded-3xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110' 
-                        style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) , rgba(230, 140, 120, 0.3), rgba(255, 165, 0, 0.9)), url('https://firebasestorage.googleapis.com/v0/b/yatlec-official.appspot.com/o/pastor%20bamidele.jpg?alt=media&token=b6f9f300-52e5-4cdb-9392-6277099498cf')`,
-                        backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPositionX: "40%",}}>
-                      </div> 
-                      <p className='lg:text-lg md:text-sm font-semibold  lg:my-5 hover:border-b'>PASTOR M.A BAMIDELE</p>
-
-                  </div>
-
-                  <div>
-                      <div className='lg:h-[300px] lg:w-[200px] md:h-[150px] md:w-[150px]  rounded-3xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110' 
-                        style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) , rgba(230, 140, 120, 0.3), rgba(255, 165, 0, 0.9)), url('https://firebasestorage.googleapis.com/v0/b/yatlec-official.appspot.com/o/pastor%20Jerade.jpg?alt=media&token=ee61b06d-6a22-4464-9053-175cddac5fd1')`,
-                        backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPositionX: "40%",}}>
-                      </div> 
-                      <p className='lg:text-lg md:text-sm font-semibold lg:my-5 hover:border-b'>PASTOR JENRADE</p>
-
-                  </div>
-
-                  <div>
-                      <div className='lg:h-[300px] lg:w-[200px] md:h-[150px] md:w-[150px]  rounded-3xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110' 
-                        style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) , rgba(230, 140, 120, 0.3), rgba(255, 165, 0, 0.9)), url('https://firebasestorage.googleapis.com/v0/b/yatlec-official.appspot.com/o/past%20Oluwadare.jpg?alt=media&token=7ff2e170-81b6-42ac-baf3-296ed420f371')`,
-                        backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPositionX: "50%",}}>
-                      </div> 
-                      <p className='lg:text-lg md:text-sm font-semibold lg:my-5 hover:border-b'>PASTOR OLUWADARE</p>
-
-                  </div>
-
-                  <div>
-                      <div className='lg:h-[300px] lg:w-[200px] md:h-[150px] md:w-[150px]  rounded-3xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110' 
-                        style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) , rgba(230, 140, 120, 0.3), rgba(255, 165, 0, 0.9)), url('https://firebasestorage.googleapis.com/v0/b/yatlec-official.appspot.com/o/pastor%20Oluwatumise.jpg?alt=media&token=4b61d906-8ff8-406f-a05e-c206fc99c050')`,
-                        backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPositionX: "50%", backgroundPositionY: "10%"}}>
-                      </div> 
-                      <p className='lg:text-lg md:text-sm font-semibold lg:my-5 hover:border-b'>PASTOR OLUWATUNMISE</p>
-
-                  </div>
-
-                
-
-
-                </div>
-
+           
 
                
 
