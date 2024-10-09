@@ -30,6 +30,7 @@ import ReadAPost from './pages/ReadAPost';
 import ScrollToTop from './Components/ScrollToTop';
 import AdminDashboard from './AdminOutlets/AdminDashboard';
 import Search from './Components/Search';
+import Footer from './Components/Footer';
 
 
 
@@ -79,6 +80,7 @@ export default function App() {
 
         
       </Routes>
+      <Footer/>
     </BrowserRouter>
   )
 }
